@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results & Discussion — MediQuick HCI2 Report</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <style>
+    .page-hero {
+      background: var(--navy);
+      padding: 7rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(240,180,41,0.1), transparent 70%);
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.25rem;
+    }
+    .breadcrumb a { color: var(--teal-light); text-decoration: none; }
+    .page-hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 0.75rem;
+    }
+    .page-hero p { color: rgba(255,255,255,0.55); max-width: 540px; font-size: 1rem; }
+
+    /* SUS bar chart */
+    .sus-bar-wrap { margin-bottom: 2.5rem; }
+    .sus-bar-item { margin-bottom: 1.1rem; }
+    .sus-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 0.35rem;
+    }
+    .sus-bar-label span { color: var(--gray-400); font-weight: 400; }
+    .sus-bar-track {
+      height: 8px;
+      background: var(--gray-100);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .sus-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--teal-dark), var(--teal-light));
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+      width: 0;
+    }
+    .sus-bar-fill.animated { width: var(--target-width); }
+
+    /* key issue list */
+    .issue-list { list-style: none; }
+    .issue-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-200);
+      background: white;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+    }
+    .issue-item:hover { box-shadow: var(--shadow); border-color: rgba(10,155,138,0.2); }
+    .issue-num {
+      width: 32px; height: 32px;
+      background: var(--navy);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .issue-body { flex: 1; }
+    .issue-title { font-weight: 700; color: var(--navy); font-size: 0.92rem; margin-bottom: 0.25rem; }
+    .issue-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+    .issue-heuristic {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--teal-dark);
+      background: rgba(10,155,138,0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* discussion prose */
+    .prose { color: var(--gray-800); line-height: 1.85; font-size: 0.95rem; }
+    .prose p { margin-bottom: 1.1rem; }
+    .prose strong { color: var(--navy); }
+
+    .callout {
+      background: linear-gradient(135deg, var(--navy), #1a3a55);
+      border-left: 4px solid var(--teal-light);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.25rem 1.5rem;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="../index.html">
+    <div class="nav-logo">MQ</div>
+    <span class="nav-title">Medi<span>Quick</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="data-gathering.html">Data Gathering</a></li>
+    <li><a href="results.html" class="active">Results & Discussion</a></li>
+    <li><a href="recommendations.html">Recommendations</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <span>Results & Discussion</span>
+    </div>
+    <h1>Results & Discussion</h1>
+    <p>Usability testing outcomes, SUS score analysis, heuristic evaluation findings, and key issues identified in the MediQuick prototype.</p>
+  </div>
+</div>
+
+<!-- SUS SCORE -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-eyebrow">System Usability Scale</div>
+    <h2 class="section-title">Overall SUS Score</h2>
+    <p class="section-desc">Aggregate results from all respondents based on the 10-item SUS questionnaire administered after usability testing.</p>
+
+    <div class="score-display fade-up">
+      <div class="score-circle">
+        <div class="score-value">
+          <div class="score-num">77.5</div>
+          <div class="score-unit">/ 100</div>
+        </div>
+      </div>
+      <div class="score-info">
+        <div class="score-grade">Good — Acceptable</div>
+        <div class="score-detail">The MediQuick prototype scored above the industry average SUS benchmark of 68, indicating it is generally usable with some areas for improvement.</div>
+        <div class="score-breakdown">
+          <div class="score-item">
+            <div class="score-item-val">5</div>
+            <div class="score-item-label">Respondents</div>
+          </div>
+          <div class="score-item">
+            <div class="score-item-val">68</div>
+            <div class="score-item-label">Industry Avg.</div>
+          </div>
+          <div class="score-item">
+            <div class="score-item-val">+9.5</div>
+            <div class="score-item-label">Above Avg.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--gray-100);border-radius:var(--radius);padding:1.25rem 1.5rem;font-size:0.85rem;color:var(--gray-600);margin-bottom:2.5rem;">
+      <strong style="color:var(--navy);">📝 Note to Group:</strong> Replace the score of 77.5 and the breakdown figures above with your actual computed SUS score. SUS scores range from 0–100. Scores above 68 are considered above average.
+    </div>
+
+    <!-- per-question bar chart -->
+    <h3 style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);font-size:1.1rem;margin-bottom:1.5rem;">Per-Question Average Scores</h3>
+    <div class="sus-bar-wrap fade-up">
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q1 — I would like to use this system frequently <span>4.2 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:84%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q2 — The system is unnecessarily complex <span>2.0 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:40%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q3 — The system was easy to use <span>4.0 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:80%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q4 — I need technical support to use this <span>1.8 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:36%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q5 — Functions were well integrated <span>3.8 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:76%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q6 — Too much inconsistency in this system <span>2.2 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:44%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q7 — Most people would learn quickly <span>4.0 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:80%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q8 — The system was cumbersome to use <span>1.6 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:32%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q9 — I felt confident using the system <span>3.8 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:76%"></div></div>
+      </div>
+      <div class="sus-bar-item">
+        <div class="sus-bar-label">Q10 — I needed to learn a lot before using <span>2.0 / 5</span></div>
+        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:40%"></div></div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:var(--gray-400);">* Replace all per-question values above with your actual average scores per item.</p>
+  </div>
+</section>
+
+<!-- HEURISTIC EVALUATION -->
+<section class="section">
+  <div class="container">
+    <div class="section-eyebrow">Heuristic Evaluation</div>
+    <h2 class="section-title">Nielsen's 10 Usability Heuristics</h2>
+    <p class="section-desc">Each group member independently evaluated the prototype against Jakob Nielsen's 10 usability heuristics. Issues are rated by severity.</p>
+
+    <div class="heuristic-grid">
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">1</div>
+        <div class="severity-badge severity-low">No Issue</div>
+        <div class="heuristic-title">Visibility of System Status</div>
+        <div class="heuristic-desc">The system generally keeps users informed about what's going on through loading indicators and status messages during key interactions.</div>
+        <div class="heuristic-rec"><strong>Observation</strong>Add real-time order tracking status updates to improve feedback during the delivery process.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">2</div>
+        <div class="severity-badge severity-medium">Minor Issue</div>
+        <div class="heuristic-title">Match Between System & Real World</div>
+        <div class="heuristic-desc">Some medical terminology and category labels may be unfamiliar to non-expert users, creating a slight disconnect from everyday language.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Use plain, patient-friendly language for medicine categories and descriptions.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">3</div>
+        <div class="severity-badge severity-low">No Issue</div>
+        <div class="heuristic-title">User Control & Freedom</div>
+        <div class="heuristic-desc">Users can easily navigate back, modify their cart, and cancel actions throughout the checkout flow.</div>
+        <div class="heuristic-rec"><strong>Observation</strong>Consider adding an undo option when items are removed from the cart.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">4</div>
+        <div class="severity-badge severity-medium">Minor Issue</div>
+        <div class="heuristic-title">Consistency & Standards</div>
+        <div class="heuristic-desc">Some button styles and icon usage are inconsistent across different screens, which may cause confusion for first-time users.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Establish a unified design system with consistent button sizes, colors, and icon styles across all screens.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">5</div>
+        <div class="severity-badge severity-high">Major Issue</div>
+        <div class="heuristic-title">Error Prevention</div>
+        <div class="heuristic-desc">The checkout form lacks sufficient validation and confirmation prompts, allowing users to submit incomplete or incorrect orders without adequate warning.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Implement inline form validation, required field indicators, and an order review/confirmation screen before final submission.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">6</div>
+        <div class="severity-badge severity-medium">Minor Issue</div>
+        <div class="heuristic-title">Recognition Rather Than Recall</div>
+        <div class="heuristic-desc">Users must remember previously viewed medicines when comparing options, as there is no persistent comparison or recently-viewed feature.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Add a "Recently Viewed" section and a product comparison feature to reduce memory load.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">7</div>
+        <div class="severity-badge severity-low">No Issue</div>
+        <div class="heuristic-title">Flexibility & Efficiency of Use</div>
+        <div class="heuristic-desc">The search and filter functionality allows experienced users to quickly find specific medicines, supporting efficient task completion.</div>
+        <div class="heuristic-rec"><strong>Observation</strong>Add keyboard shortcuts and quick-reorder options for returning customers.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">8</div>
+        <div class="severity-badge severity-medium">Minor Issue</div>
+        <div class="heuristic-title">Aesthetic & Minimalist Design</div>
+        <div class="heuristic-desc">Some product pages contain excessive text and competing visual elements that distract from the primary action of adding items to the cart.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Simplify product detail pages by prioritizing essential information and reducing visual noise.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">9</div>
+        <div class="severity-badge severity-high">Major Issue</div>
+        <div class="heuristic-title">Help Users Recognize, Diagnose & Recover from Errors</div>
+        <div class="heuristic-desc">Error messages are generic and do not provide actionable guidance, leaving users unsure how to resolve the problem.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Rewrite all error messages to be specific, human-readable, and include clear next steps for resolution.</div>
+      </div>
+
+      <div class="heuristic-card fade-up">
+        <div class="heuristic-num">10</div>
+        <div class="severity-badge severity-low">No Issue</div>
+        <div class="heuristic-title">Help & Documentation</div>
+        <div class="heuristic-desc">Basic help text is available on key screens. The prototype includes a visible FAQ section accessible from the main navigation.</div>
+        <div class="heuristic-rec"><strong>Observation</strong>Consider adding contextual tooltips and an in-app chat support option for urgent queries.</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:2rem;background:var(--gray-100);border-radius:var(--radius);padding:1.25rem 1.5rem;font-size:0.85rem;color:var(--gray-600);">
+      <strong style="color:var(--navy);">📝 Note to Group:</strong> The heuristic findings above are sample/placeholder content. Replace each card with the actual findings from your group members' individual Heuristic Evaluation Workbooks. Update severity badges (High/Medium/Low) to match your actual ratings.
+    </div>
+  </div>
+</section>
+
+<!-- KEY ISSUES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-eyebrow">Summary</div>
+    <h2 class="section-title">Key Issues Identified</h2>
+    <p class="section-desc">The most critical usability problems discovered through both heuristic evaluation and usability testing sessions.</p>
+
+    <ul class="issue-list">
+      <div class="fade-up">
+        <li class="issue-item">
+          <div class="issue-num">1</div>
+          <div class="issue-body">
+            <div class="issue-title">Insufficient Error Prevention at Checkout</div>
+            <div class="issue-desc">Users were able to proceed through the checkout flow with missing required fields, leading to failed submissions and frustration. No inline validation or confirmation step existed before the final order was placed.</div>
+            <span class="issue-heuristic">Heuristic #5 — Error Prevention</span>
+          </div>
+          <div class="severity-badge severity-high" style="flex-shrink:0;align-self:flex-start;">High</div>
+        </li>
+      </div>
+      <div class="fade-up">
+        <li class="issue-item">
+          <div class="issue-num">2</div>
+          <div class="issue-body">
+            <div class="issue-title">Unclear and Generic Error Messages</div>
+            <div class="issue-desc">When errors occurred (e.g., out-of-stock items, failed search), the system displayed vague messages such as "Something went wrong" without indicating the cause or how to recover.</div>
+            <span class="issue-heuristic">Heuristic #9 — Error Recovery</span>
+          </div>
+          <div class="severity-badge severity-high" style="flex-shrink:0;align-self:flex-start;">High</div>
+        </li>
+      </div>
+      <div class="fade-up">
+        <li class="issue-item">
+          <div class="issue-num">3</div>
+          <div class="issue-body">
+            <div class="issue-title">Inconsistent UI Components Across Screens</div>
+            <div class="issue-desc">Different button styles and icon treatments were observed across the home screen, product listing, and cart pages, reducing the perceived professionalism of the interface and slowing user navigation.</div>
+            <span class="issue-heuristic">Heuristic #4 — Consistency & Standards</span>
+          </div>
+          <div class="severity-badge severity-medium" style="flex-shrink:0;align-self:flex-start;">Medium</div>
+        </li>
+      </div>
+      <div class="fade-up">
+        <li class="issue-item">
+          <div class="issue-num">4</div>
+          <div class="issue-body">
+            <div class="issue-title">Medical Terminology Unfamiliar to General Users</div>
+            <div class="issue-desc">Category labels such as "Analgesics," "Antipyretics," and "Antihypertensives" were difficult for non-medical users to interpret, causing navigation confusion during task completion.</div>
+            <span class="issue-heuristic">Heuristic #2 — Match with Real World</span>
+          </div>
+          <div class="severity-badge severity-medium" style="flex-shrink:0;align-self:flex-start;">Medium</div>
+        </li>
+      </div>
+      <div class="fade-up">
+        <li class="issue-item">
+          <div class="issue-num">5</div>
+          <div class="issue-body">
+            <div class="issue-title">Cluttered Product Detail Pages</div>
+            <div class="issue-desc">Product pages contained too much information presented without clear visual hierarchy, making it difficult for users to quickly identify the primary call-to-action (Add to Cart button).</div>
+            <span class="issue-heuristic">Heuristic #8 — Aesthetic & Minimalist Design</span>
+          </div>
+          <div class="severity-badge severity-medium" style="flex-shrink:0;align-self:flex-start;">Medium</div>
+        </li>
+      </div>
+    </ul>
+  </div>
+</section>
+
+<!-- DISCUSSION -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-eyebrow">Discussion</div>
+        <h2 class="section-title" style="font-size:2rem;">Discussion of Findings</h2>
+        <div class="prose fade-up">
+          <p>The usability evaluation of the MediQuick prototype revealed a system that is generally functional and meets the basic expectations of an online pharmacy platform. The overall SUS score of <strong>77.5</strong> places the prototype in the "Good" range, indicating that users found the system acceptable and reasonably easy to use for common tasks.</p>
+          <p>However, the heuristic evaluation surfaced several recurring issues that, if left unaddressed, could significantly impact the experience of non-technical users — particularly those with limited digital literacy or unfamiliarity with medical terminology.</p>
+          <p>The two most critical issues — <strong>insufficient error prevention</strong> and <strong>unclear error messaging</strong> — represent fundamental gaps in the current prototype's ability to guide users through failure scenarios. These findings are consistent with usability literature suggesting that error recovery support is one of the most impactful factors in user satisfaction.</p>
+          <div class="callout">"Users are not the problem. The design is the problem." — Don Norman, The Design of Everyday Things</div>
+          <p>Positive findings include strong scores on learnability (Q7) and perceived frequency of use (Q1), suggesting that first-time users found the overall concept compelling and the core navigation model intuitive. This is a strong foundation upon which targeted improvements can be built.</p>
+        </div>
+      </div>
+      <div class="fade-up" style="display:flex;flex-direction:column;gap:1.25rem;padding-top:4.5rem;">
+        <div class="card" style="border-left:4px solid var(--teal);">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem;">✅</div>
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:0.4rem;">Strengths</div>
+          <ul style="list-style:none;font-size:0.85rem;color:var(--gray-600);display:flex;flex-direction:column;gap:0.4rem;">
+            <li>• Intuitive core navigation structure</li>
+            <li>• High learnability for new users</li>
+            <li>• Strong perceived usefulness</li>
+            <li>• Effective search and filter features</li>
+            <li>• Clear cart management flow</li>
+          </ul>
+        </div>
+        <div class="card" style="border-left:4px solid var(--accent);">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem;">⚠️</div>
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:0.4rem;">Areas for Improvement</div>
+          <ul style="list-style:none;font-size:0.85rem;color:var(--gray-600);display:flex;flex-direction:column;gap:0.4rem;">
+            <li>• Form validation at checkout</li>
+            <li>• Error message clarity</li>
+            <li>• Consistent UI components</li>
+            <li>• Plain-language category labels</li>
+            <li>• Product page information hierarchy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>HCI2 Final Project · <strong>Partido State University</strong> · College of Engineering and Computational Sciences</p>
+  <p style="margin-top:0.35rem;">Course Instructor: <strong>Michael B. Amata</strong> · Group Leader: <strong>Jonas P. Sabenorio</strong></p>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/animations.js"></script>
+<script>
+  // Animate bars on scroll
+  const bars = document.querySelectorAll('.sus-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('animated'), 200);
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  bars.forEach(b => barObserver.observe(b));
+</script>
+</body>
+</html>

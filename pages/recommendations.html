@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendations — MediQuick HCI2 Report</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <style>
+    .page-hero {
+      background: var(--navy);
+      padding: 7rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,107,107,0.1), transparent 70%);
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.25rem;
+    }
+    .breadcrumb a { color: var(--teal-light); text-decoration: none; }
+    .page-hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 0.75rem;
+    }
+    .page-hero p { color: rgba(255,255,255,0.55); max-width: 540px; font-size: 1rem; }
+
+    /* Priority timeline */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), var(--teal-light), rgba(10,155,138,0.1));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2.45rem;
+      top: 0.35rem;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--teal);
+      background: white;
+    }
+    .timeline-dot.filled { background: var(--teal); }
+    .timeline-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .label-immediate { color: var(--accent); }
+    .label-short { color: var(--accent-gold); }
+    .label-long { color: var(--teal); }
+    .timeline-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      transition: var(--transition);
+    }
+    .timeline-card:hover { box-shadow: var(--shadow); border-color: rgba(10,155,138,0.2); }
+    .timeline-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .timeline-desc { font-size: 0.87rem; color: var(--gray-600); line-height: 1.65; }
+
+    /* Design improvements */
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .design-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .design-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .design-card-header {
+      background: var(--navy);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .design-card-icon {
+      width: 40px; height: 40px;
+      background: rgba(10,155,138,0.15);
+      border: 1px solid rgba(10,155,138,0.3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .design-card-title {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      color: white;
+      font-size: 0.92rem;
+    }
+    .design-card-body { padding: 1.25rem 1.5rem; }
+    .design-card-body p { font-size: 0.87rem; color: var(--gray-600); margin-bottom: 0.75rem; line-height: 1.65; }
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .ba-box {
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.75rem;
+      font-size: 0.78rem;
+    }
+    .ba-before {
+      background: #FFF5F5;
+      border: 1px solid #FED7D7;
+      color: #C53030;
+    }
+    .ba-after {
+      background: #F0FFF4;
+      border: 1px solid #9AE6B4;
+      color: #276749;
+    }
+    .ba-label {
+      font-weight: 700;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+      opacity: 0.7;
+    }
+
+    /* summary table */
+    .summary-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .summary-table th {
+      background: var(--navy);
+      color: white;
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .summary-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: top;
+      color: var(--gray-800);
+    }
+    .summary-table tr:hover td { background: var(--gray-100); }
+    .priority-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .dot-high { background: var(--accent); }
+    .dot-medium { background: var(--accent-gold); }
+    .dot-low { background: var(--teal); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="../index.html">
+    <div class="nav-logo">MQ</div>
+    <span class="nav-title">Medi<span>Quick</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="data-gathering.html">Data Gathering</a></li>
+    <li><a href="results.html">Results & Discussion</a></li>
+    <li><a href="recommendations.html" class="active">Recommendations</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <span>Recommendations</span>
+    </div>
+    <h1>Recommendations</h1>
+    <p>Design improvements and actionable suggestions to enhance the usability, accessibility, and overall user experience of MediQuick.</p>
+  </div>
+</div>
+
+<!-- TOP RECOMMENDATIONS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-eyebrow">Key Improvements</div>
+    <h2 class="section-title">Top Recommendations</h2>
+    <p class="section-desc">High-impact usability improvements derived from the heuristic evaluation and usability testing results, organized by priority.</p>
+
+    <div class="rec-grid" style="margin-bottom:2rem;">
+      <div class="rec-card fade-up">
+        <div class="rec-icon">🛡️</div>
+        <div class="rec-title">Implement Checkout Validation</div>
+        <div class="rec-desc">Add real-time inline form validation with clear required field indicators and a full order review screen before final submission to prevent user errors and failed orders.</div>
+      </div>
+      <div class="rec-card fade-up">
+        <div class="rec-icon">💬</div>
+        <div class="rec-title">Rewrite Error Messages</div>
+        <div class="rec-desc">Replace all generic system errors with specific, actionable, human-friendly messages that explain what went wrong and provide clear steps for the user to recover.</div>
+      </div>
+      <div class="rec-card fade-up">
+        <div class="rec-icon">🎨</div>
+        <div class="rec-title">Establish a Design System</div>
+        <div class="rec-desc">Create a unified component library with consistent button styles, icon usage, typography scales, and color tokens to ensure visual consistency across all screens.</div>
+      </div>
+      <div class="rec-card fade-up">
+        <div class="rec-icon">🏷️</div>
+        <div class="rec-title">Simplify Medicine Categories</div>
+        <div class="rec-desc">Replace technical medical labels with everyday language (e.g., "Pain Relief" instead of "Analgesics") and add descriptive subtitles to help users find what they need quickly.</div>
+      </div>
+      <div class="rec-card fade-up">
+        <div class="rec-icon">📄</div>
+        <div class="rec-title">Redesign Product Pages</div>
+        <div class="rec-desc">Restructure product detail pages with a clear information hierarchy — lead with the product name, key details, and a prominent "Add to Cart" button, moving secondary details below.</div>
+      </div>
+      <div class="rec-card fade-up">
+        <div class="rec-icon">🕐</div>
+        <div class="rec-title">Add Recently Viewed</div>
+        <div class="rec-desc">Implement a "Recently Viewed" section and persistent search history to reduce memory load and help users return to products they have previously browsed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION TIMELINE -->
+<section class="section">
+  <div class="container">
+    <div class="section-eyebrow">Implementation Roadmap</div>
+    <h2 class="section-title">Suggested Design Improvements</h2>
+    <p class="section-desc">Recommendations organized by priority and suggested timeline for the next iteration of the MediQuick prototype.</p>
+
+    <div class="timeline fade-up">
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-label label-immediate">🔴 Immediate Priority</div>
+        <div class="timeline-card">
+          <div class="timeline-title">Form Validation & Error Prevention System</div>
+          <div class="timeline-desc">Implement complete form validation across all input fields in the checkout flow. Add required field indicators (*), inline error messages that appear before submission, and a final order confirmation/review screen that allows users to check their details before placing the order. This directly addresses the highest-severity heuristic violation found in the evaluation.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-label label-immediate">🔴 Immediate Priority</div>
+        <div class="timeline-card">
+          <div class="timeline-title">Error Message Overhaul</div>
+          <div class="timeline-desc">Audit every error state in the prototype and replace all generic messages ("Something went wrong", "Error 404") with specific, human-readable descriptions. Each error message should clearly state: what happened, why it happened, and what the user should do next. Example: "This item is currently out of stock. Try browsing similar products below."</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label label-short">🟡 Short-Term (Next Sprint)</div>
+        <div class="timeline-card">
+          <div class="timeline-title">UI Consistency & Design System</div>
+          <div class="timeline-desc">Define and document a core design system for MediQuick: establish a primary button style (filled teal), secondary button style (outlined), icon set (single library), and typography scale. Apply these consistently across all screens. This will reduce cognitive friction and increase the system's perceived professionalism.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label label-short">🟡 Short-Term (Next Sprint)</div>
+        <div class="timeline-card">
+          <div class="timeline-title">Medicine Category Labels & Navigation</div>
+          <div class="timeline-desc">Rename all medicine categories to plain language alternatives. Add short descriptive text beneath each category tile on the home screen. Consider adding a "What are you looking for?" guided search for first-time users who may not know the medical name of their medicine.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label label-long">🟢 Long-Term Enhancement</div>
+        <div class="timeline-card">
+          <div class="timeline-title">Product Page Information Architecture</div>
+          <div class="timeline-desc">Conduct a card-sorting exercise with users to determine the ideal order of information on product pages. Implement a collapsible "Details" section for secondary information (ingredients, warnings, storage instructions), keeping the primary view clean with just the product name, image, price, and Add to Cart button.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-label label-long">🟢 Long-Term Enhancement</div>
+        <div class="timeline-card">
+          <div class="timeline-title">Recently Viewed & Order History Features</div>
+          <div class="timeline-desc">Develop a "Recently Viewed" shelf on the home screen and product listing pages. Add a one-click "Reorder" feature in the order history section for returning customers. These features leverage recognition over recall and significantly improve efficiency for repeat users.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER DESIGN SUGGESTIONS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-eyebrow">Before & After</div>
+    <h2 class="section-title">Suggested Design Changes</h2>
+    <p class="section-desc">Specific before-and-after examples illustrating how identified issues can be resolved in the next prototype iteration.</p>
+
+    <div class="design-grid">
+      <div class="design-card fade-up">
+        <div class="design-card-header">
+          <div class="design-card-icon">⚠️</div>
+          <div class="design-card-title">Error Messages</div>
+        </div>
+        <div class="design-card-body">
+          <p>Error messages should be specific and actionable, not generic system-level text that leaves users confused.</p>
+          <div class="before-after">
+            <div class="ba-box ba-before">
+              <div class="ba-label">Before</div>
+              "Something went wrong. Please try again."
+            </div>
+            <div class="ba-box ba-after">
+              <div class="ba-label">After</div>
+              "This item is out of stock. Browse similar medicines below."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-card fade-up">
+        <div class="design-card-header">
+          <div class="design-card-icon">🏷️</div>
+          <div class="design-card-title">Category Labels</div>
+        </div>
+        <div class="design-card-body">
+          <p>Category names should use language that everyday users — not medical professionals — can immediately understand.</p>
+          <div class="before-after">
+            <div class="ba-box ba-before">
+              <div class="ba-label">Before</div>
+              "Analgesics / Antipyretics / Antihypertensives"
+            </div>
+            <div class="ba-box ba-after">
+              <div class="ba-label">After</div>
+              "Pain Relief / Fever Care / Blood Pressure"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-card fade-up">
+        <div class="design-card-header">
+          <div class="design-card-icon">🛒</div>
+          <div class="design-card-title">Checkout Flow</div>
+        </div>
+        <div class="design-card-body">
+          <p>Add a confirmation step before final order submission to give users a chance to review and correct their details.</p>
+          <div class="before-after">
+            <div class="ba-box ba-before">
+              <div class="ba-label">Before</div>
+              Fill form → Place Order (no review)
+            </div>
+            <div class="ba-box ba-after">
+              <div class="ba-label">After</div>
+              Fill form → Review Order → Confirm → Place Order
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-card fade-up">
+        <div class="design-card-header">
+          <div class="design-card-icon">📦</div>
+          <div class="design-card-title">Product Page Layout</div>
+        </div>
+        <div class="design-card-body">
+          <p>Reduce visual clutter on product pages by separating essential information from secondary details.</p>
+          <div class="before-after">
+            <div class="ba-box ba-before">
+              <div class="ba-label">Before</div>
+              All info shown at once, CTA buried in content
+            </div>
+            <div class="ba-box ba-after">
+              <div class="ba-label">After</div>
+              Name + Price + CTA above fold, details collapsible below
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY TABLE -->
+<section class="section">
+  <div class="container">
+    <div class="section-eyebrow">At a Glance</div>
+    <h2 class="section-title">Recommendation Summary</h2>
+    <p class="section-desc">A consolidated overview of all recommendations with associated heuristics, priority, and effort estimates.</p>
+
+    <div style="overflow-x:auto;" class="fade-up">
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Recommendation</th>
+            <th>Related Heuristic</th>
+            <th>Priority</th>
+            <th>Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Implement checkout form validation & order review screen</td>
+            <td>H5 — Error Prevention</td>
+            <td><span class="priority-dot dot-high"></span>High</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Rewrite all error messages to be specific and actionable</td>
+            <td>H9 — Error Recovery</td>
+            <td><span class="priority-dot dot-high"></span>High</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Create a unified design system (buttons, icons, typography)</td>
+            <td>H4 — Consistency</td>
+            <td><span class="priority-dot dot-medium"></span>Medium</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Rename category labels to plain, everyday language</td>
+            <td>H2 — Real World Match</td>
+            <td><span class="priority-dot dot-medium"></span>Medium</td>
+            <td>Low</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Restructure product pages with clear information hierarchy</td>
+            <td>H8 — Minimalist Design</td>
+            <td><span class="priority-dot dot-medium"></span>Medium</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Add Recently Viewed shelf and Reorder shortcut</td>
+            <td>H6 — Recognition over Recall</td>
+            <td><span class="priority-dot dot-low"></span>Low</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Add contextual tooltips and in-app support chat</td>
+            <td>H10 — Help & Documentation</td>
+            <td><span class="priority-dot dot-low"></span>Low</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Add real-time order status tracking updates</td>
+            <td>H1 — Visibility of Status</td>
+            <td><span class="priority-dot dot-low"></span>Low</td>
+            <td>High</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="section section-alt">
+  <div class="container" style="text-align:center;max-width:680px;">
+    <div class="section-eyebrow" style="text-align:center;">Conclusion</div>
+    <h2 class="section-title" style="text-align:center;">Final Remarks</h2>
+    <p style="color:var(--gray-600);line-height:1.85;font-size:0.97rem;">
+      The MediQuick prototype demonstrates strong potential as a user-friendly online pharmacy platform. With an SUS score of 77.5, the system is above the industry benchmark, indicating that users found it generally acceptable and easy to learn. By addressing the critical issues identified — particularly around error prevention and error messaging — and implementing the recommended design improvements, MediQuick can achieve an even higher standard of usability and better serve the needs of its target users.
+    </p>
+    <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--gray-400);">
+      This evaluation was conducted as part of the HCI2 Final Project at Partido State University under the supervision of <strong style="color:var(--gray-600);">Michael B. Amata</strong>, Course Instructor, Computational Sciences Department.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>HCI2 Final Project · <strong>Partido State University</strong> · College of Engineering and Computational Sciences</p>
+  <p style="margin-top:0.35rem;">Course Instructor: <strong>Michael B. Amata</strong> · Group Leader: <strong>Jonas P. Sabenorio</strong></p>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Gathering — MediQuick HCI2 Report</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <style>
+    .page-hero {
+      background: var(--navy);
+      padding: 7rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(10,155,138,0.12), transparent 70%);
+    }
+    .page-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.25rem;
+    }
+    .breadcrumb a { color: var(--teal-light); text-decoration: none; }
+    .breadcrumb a:hover { opacity: 0.8; }
+    .page-hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 0.75rem;
+    }
+    .page-hero p { color: rgba(255,255,255,0.55); max-width: 540px; font-size: 1rem; }
+
+    .open-ended-list { list-style: none; }
+    .open-ended-list li {
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-800);
+      border-left: 3px solid var(--teal);
+      font-size: 0.9rem;
+    }
+
+    .doc-card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+    .doc-card:hover { box-shadow: var(--shadow); border-color: rgba(10,155,138,0.2); }
+    .doc-icon {
+      width: 46px; height: 46px;
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .doc-title { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+    .doc-meta { font-size: 0.78rem; color: var(--gray-400); margin-top: 2px; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .photo-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--gray-100);
+      border-radius: var(--radius-sm);
+      border: 2px dashed var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--gray-400);
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .photo-placeholder span { font-size: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="../index.html">
+    <div class="nav-logo">MQ</div>
+    <span class="nav-title">Medi<span>Quick</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="data-gathering.html" class="active">Data Gathering</a></li>
+    <li><a href="results.html">Results & Discussion</a></li>
+    <li><a href="recommendations.html">Recommendations</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>›</span>
+      <span>Data Gathering</span>
+    </div>
+    <h1>Data Gathering</h1>
+    <p>Consent forms, respondent profiles, survey instruments, and documentation from the usability testing process.</p>
+  </div>
+</div>
+
+<section class="section section-alt">
+  <div class="container">
+    <!-- TABS -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="tab-consent">Consent Form</button>
+      <button class="tab-btn" data-tab="tab-respondents">Respondent Profile</button>
+      <button class="tab-btn" data-tab="tab-sus">SUS Questionnaire</button>
+      <button class="tab-btn" data-tab="tab-docs">Documentation</button>
+    </div>
+
+    <!-- TAB: Consent Form -->
+    <div id="tab-consent" class="tab-panel active">
+      <div class="consent-box fade-up">
+        <div class="consent-header">
+          <div class="consent-icon">📋</div>
+          <div>
+            <div class="consent-title">MediQuick — Informed Consent Form</div>
+            <div class="consent-subtitle">Partido State University · College of Engineering and Computational Sciences</div>
+          </div>
+        </div>
+
+        <div class="consent-section">
+          <div class="consent-section-title">Study Overview</div>
+          <p>You are invited to participate in a usability testing study for the MediQuick - Online Pharmacy & Medicine Delivery System. This prototype aims to improve how users access medicines and healthcare services online. The purpose of this study is to evaluate how easy, efficient and user-friendly the system is when performing basic tasks.</p>
+        </div>
+
+        <div class="consent-section">
+          <div class="consent-section-title">Procedure</div>
+          <p>If you agree to participate, you will be asked to use the MediQuick system prototype and perform simple tasks such as exploring features or checking available services. After completing the tasks, you will answer a System Usability Scale (SUS) questionnaire based on your experience.</p>
+        </div>
+
+        <div class="consent-section">
+          <div class="consent-section-title">Duration</div>
+          <p>The entire activity will take approximately <strong style="color:var(--teal-light)">10–20 minutes</strong> to complete.</p>
+        </div>
+
+        <div class="consent-section">
+          <div class="consent-section-title">Voluntary Participation</div>
+          <p>Your participation is voluntary. You may choose not to join or stop at any time without any consequence.</p>
+        </div>
+
+        <div class="consent-section">
+          <div class="consent-section-title">Confidentiality Statement</div>
+          <p>All your information will be kept private. Your identity will not be shared, and your answers will be used only for academic purposes.</p>
+        </div>
+
+        <div class="consent-section">
+          <div class="consent-section-title">Risks and Benefits</div>
+          <p>This study has minimal risk, limited only to the time required to complete the activity. There are no direct personal benefits; however, your feedback will help improve the system for future users.</p>
+        </div>
+
+        <div class="consent-fields">
+          <div class="consent-field">
+            <label>Participant Name</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="consent-field">
+            <label>Signature</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="consent-field">
+            <label>Date</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="consent-field">
+            <label>Group Leader Contact</label>
+            <div style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:4px;">Jonas P. Sabenorio</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <p style="font-size:0.85rem;color:var(--gray-600);">
+        <strong>Course Instructor:</strong> Michael B. Amata · Computational Sciences Department
+      </p>
+    </div>
+
+    <!-- TAB: Respondent Profile -->
+    <div id="tab-respondents" class="tab-panel">
+      <div class="section-eyebrow">Demographics</div>
+      <h3 class="section-title" style="font-size:1.8rem;margin-bottom:1.5rem;">Respondent Profile Summary</h3>
+
+      <div class="profile-grid fade-up" style="margin-bottom:2.5rem;">
+        <div class="profile-stat">
+          <div class="profile-stat-num">5</div>
+          <div class="profile-stat-label">Total Respondents</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-num">10–20</div>
+          <div class="profile-stat-label">Avg. Session (mins)</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-num">BSCS</div>
+          <div class="profile-stat-label">Primary Program</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-num">2nd–3rd</div>
+          <div class="profile-stat-label">Year Level Range</div>
+        </div>
+      </div>
+
+      <div style="background:var(--gray-100);border-radius:var(--radius);padding:1.5rem;font-size:0.88rem;color:var(--gray-600);">
+        <strong style="color:var(--navy);display:block;margin-bottom:0.5rem;">ℹ️ Note to Group</strong>
+        Replace the summary statistics above with your actual respondent data. Add a table or chart here showing the age range, gender distribution, year level, and course/program breakdown of your actual respondents.
+      </div>
+    </div>
+
+    <!-- TAB: SUS -->
+    <div id="tab-sus" class="tab-panel">
+      <div class="section-eyebrow">Survey Instrument</div>
+      <h3 class="section-title" style="font-size:1.8rem;margin-bottom:0.5rem;">System Usability Scale (SUS)</h3>
+      <p style="color:var(--gray-600);margin-bottom:2rem;font-size:0.92rem;">The following questionnaire measures the usability of the prototype. Participants indicate their level of agreement with each statement based on their experience.</p>
+
+      <div style="overflow-x:auto;" class="fade-up">
+        <table class="sus-table">
+          <thead>
+            <tr>
+              <th style="text-align:left;">Statement</th>
+              <th>Strongly<br>Disagree</th>
+              <th>Disagree</th>
+              <th>Neutral</th>
+              <th>Agree</th>
+              <th>Strongly<br>Agree</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. I think that I would like to use this system frequently.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>2. I found the system unnecessarily complex.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>3. I thought the system was easy to use.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>4. I think that I would need the support of a technical person to use this system.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>5. I found the various functions in this system were well integrated.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>6. I thought there was too much inconsistency in this system.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>7. I would imagine that most people would learn to use this system very quickly.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>8. I found the system very cumbersome to use.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>9. I felt very confident using the system.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+            <tr>
+              <td>10. I needed to learn a lot of things before I could get going with this system.</td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+              <td><div class="radio-circle"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+
+      <h4 style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:1rem;">Part IV — Open-Ended Questions</h4>
+      <ul class="open-ended-list">
+        <li>1. What improvements or suggestions can you recommend to enhance the usability of the system?</li>
+        <li>2. What did you like most and least about your experience using the system?</li>
+      </ul>
+    </div>
+
+    <!-- TAB: Documentation -->
+    <div id="tab-docs" class="tab-panel">
+      <div class="section-eyebrow">Supporting Files</div>
+      <h3 class="section-title" style="font-size:1.8rem;margin-bottom:1.5rem;">Documentation & Evidence</h3>
+
+      <h4 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:1rem;">Attached Documents</h4>
+
+      <div class="doc-card fade-up">
+        <div class="doc-icon">📄</div>
+        <div>
+          <div class="doc-title">Heuristic Evaluation Workbook — Member 1 (Jonas Sabenorio)</div>
+          <div class="doc-meta">PDF · Heuristic Evaluation · Replace with actual file link</div>
+        </div>
+      </div>
+      <div class="doc-card fade-up">
+        <div class="doc-icon">📄</div>
+        <div>
+          <div class="doc-title">Heuristic Evaluation Workbook — Member 2</div>
+          <div class="doc-meta">PDF · Heuristic Evaluation · Replace with actual file link</div>
+        </div>
+      </div>
+      <div class="doc-card fade-up">
+        <div class="doc-icon">📄</div>
+        <div>
+          <div class="doc-title">Heuristic Evaluation Workbook — Member 3</div>
+          <div class="doc-meta">PDF · Heuristic Evaluation · Replace with actual file link</div>
+        </div>
+      </div>
+      <div class="doc-card fade-up">
+        <div class="doc-icon">📋</div>
+        <div>
+          <div class="doc-title">Consent Form (Signed Copies)</div>
+          <div class="doc-meta">PDF · Consent Documentation</div>
+        </div>
+      </div>
+      <div class="doc-card fade-up">
+        <div class="doc-icon">📊</div>
+        <div>
+          <div class="doc-title">SUS Questionnaire Responses — All Respondents</div>
+          <div class="doc-meta">PDF/Spreadsheet · Usability Testing Data</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h4 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:1rem;">📸 Photos During Testing</h4>
+      <div class="photo-grid">
+        <div class="photo-placeholder"><span>📷</span>Add testing photo here</div>
+        <div class="photo-placeholder"><span>📷</span>Add testing photo here</div>
+        <div class="photo-placeholder"><span>📷</span>Add testing photo here</div>
+        <div class="photo-placeholder"><span>📷</span>Add testing photo here</div>
+        <div class="photo-placeholder"><span>📷</span>Add testing photo here</div>
+        <div class="photo-placeholder"><span>📷</span>Add testing photo here</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>HCI2 Final Project · <strong>Partido State University</strong> · College of Engineering and Computational Sciences</p>
+  <p style="margin-top:0.35rem;">Course Instructor: <strong>Michael B. Amata</strong> · Group Leader: <strong>Jonas P. Sabenorio</strong></p>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/animations.js"></script>
+</body>
+</html>

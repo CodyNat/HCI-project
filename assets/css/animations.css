@@ -1,0 +1,694 @@
+/* ============================================================
+   MEDIQUICK — animations.css
+   Add <link rel="stylesheet" href="assets/css/animations.css">
+   (or ../assets/css/animations.css from /pages/) AFTER style.css
+   ============================================================ */
+
+/* ── 1. KEYFRAME LIBRARY ────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(10,155,138,0); }
+  50%       { box-shadow: 0 0 0 10px rgba(10,155,138,0.15); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(10,155,138,0.2); }
+  50%       { border-color: rgba(10,155,138,0.6); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dashDraw {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes navSlideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: var(--target-width, 100%); }
+}
+
+@keyframes tabIndicatorSlide {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes heroTextReveal {
+  from { opacity: 0; transform: translateY(20px) skewY(1deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0deg); }
+}
+
+@keyframes cardFlip {
+  0%   { transform: perspective(600px) rotateY(15deg) scale(0.96); opacity: 0; }
+  100% { transform: perspective(600px) rotateY(0deg) scale(1);    opacity: 1; }
+}
+
+@keyframes timelineDotPop {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+
+/* ── 2. SCROLL-TRIGGERED ENTRANCE CLASSES ───────────────────── */
+/* Applied by JS when element enters viewport */
+
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-down {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-fade-down.is-visible { opacity: 1; transform: translateY(0); }
+
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.anim-fade-in.is-visible { opacity: 1; }
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.anim-scale-in.is-visible { opacity: 1; transform: scale(1); }
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-slide-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-slide-right.is-visible { opacity: 1; transform: translateX(0); }
+
+.anim-flip-in {
+  opacity: 0;
+  transform: perspective(600px) rotateY(15deg) scale(0.96);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-flip-in.is-visible { opacity: 1; transform: perspective(600px) rotateY(0deg) scale(1); }
+
+/* Stagger delay helpers — add alongside any anim- class */
+.delay-100 { transition-delay: 0.1s !important; }
+.delay-200 { transition-delay: 0.2s !important; }
+.delay-300 { transition-delay: 0.3s !important; }
+.delay-400 { transition-delay: 0.4s !important; }
+.delay-500 { transition-delay: 0.5s !important; }
+.delay-600 { transition-delay: 0.6s !important; }
+.delay-700 { transition-delay: 0.7s !important; }
+.delay-800 { transition-delay: 0.8s !important; }
+
+
+/* ── 3. NAVBAR ANIMATION ────────────────────────────────────── */
+
+.navbar {
+  animation: navSlideDown 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.nav-brand {
+  animation: fadeIn 0.6s 0.3s ease both;
+}
+
+.nav-links li {
+  animation: fadeDown 0.4s ease both;
+}
+.nav-links li:nth-child(1) { animation-delay: 0.35s; }
+.nav-links li:nth-child(2) { animation-delay: 0.42s; }
+.nav-links li:nth-child(3) { animation-delay: 0.49s; }
+.nav-links li:nth-child(4) { animation-delay: 0.56s; }
+
+/* nav link hover underline sweep */
+.nav-links a {
+  position: relative;
+  overflow: hidden;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 50%; right: 50%;
+  height: 2px;
+  background: var(--teal-light);
+  border-radius: 2px;
+  transition: left 0.25s ease, right 0.25s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  left: 10px;
+  right: 10px;
+}
+
+
+/* ── 4. HERO SECTION ────────────────────────────────────────── */
+
+.hero-badge {
+  animation: fadeIn 0.6s 0.4s ease both;
+}
+
+.hero h1 {
+  animation: heroTextReveal 0.8s 0.55s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.hero-desc {
+  animation: fadeUp 0.7s 0.75s ease both;
+}
+
+.hero-tags {
+  animation: fadeUp 0.7s 0.9s ease both;
+}
+
+.hero-card {
+  animation: slideInRight 0.8s 0.6s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* floating effect on hero card */
+.hero-card {
+  animation: slideInRight 0.8s 0.6s cubic-bezier(0.22,1,0.36,1) both,
+             floatY 5s 1.5s ease-in-out infinite;
+}
+
+/* member avatar pulse on hover */
+.member-avatar {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease;
+}
+.member-avatar:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px rgba(10,155,138,0.2);
+}
+
+/* hero background grid parallax hint */
+.hero-grid {
+  animation: fadeIn 1.2s 0.2s ease both;
+}
+
+/* blink dot already defined in keyframes, used in .hero-badge::before via style.css */
+
+
+/* ── 5. CARDS ───────────────────────────────────────────────── */
+
+/* Generic card hover lift & glow */
+.card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(10,155,138,0.16);
+}
+
+/* Heuristic cards — flip entrance */
+.heuristic-card {
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+.heuristic-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(10,155,138,0.18);
+  border-color: var(--teal);
+}
+
+/* heuristic number morphs on hover */
+.heuristic-card:hover .heuristic-num {
+  color: rgba(10,155,138,0.22);
+  transition: color 0.3s ease;
+}
+
+/* rec cards */
+.rec-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease;
+}
+.rec-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(10,155,138,0.14);
+}
+
+/* design cards */
+.design-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease;
+}
+.design-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 14px 38px rgba(10,155,138,0.16);
+}
+
+/* issue items */
+.issue-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.issue-item:hover {
+  transform: translateX(5px);
+  border-color: rgba(10,155,138,0.3);
+  box-shadow: 0 4px 20px rgba(10,155,138,0.1);
+}
+
+/* doc cards */
+.doc-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.doc-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(10,155,138,0.3);
+  box-shadow: var(--shadow);
+}
+
+/* timeline cards */
+.timeline-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.timeline-card:hover {
+  transform: translateX(6px);
+  border-color: rgba(10,155,138,0.25);
+  box-shadow: 0 6px 24px rgba(10,155,138,0.1);
+}
+
+
+/* ── 6. BUTTONS & INTERACTIVE ELEMENTS ──────────────────────── */
+
+/* ripple effect base — JS adds .ripple-container class */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* proto link arrow bounce */
+.proto-link svg,
+.proto-link::after {
+  transition: transform 0.25s ease;
+}
+.proto-link:hover {
+  letter-spacing: 0.5px;
+  transition: letter-spacing 0.2s ease, opacity 0.2s ease;
+}
+
+/* nav brand logo spin-on-hover */
+.nav-logo {
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nav-logo:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* tab buttons */
+.tab-btn {
+  transition: color 0.25s ease, background 0.25s ease;
+  position: relative;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 100%;
+  height: 2px;
+  background: var(--teal);
+  transition: right 0.3s cubic-bezier(0.22,1,0.36,1);
+  border-radius: 2px;
+}
+.tab-btn.active::after { right: 0; }
+.tab-btn:hover { color: var(--teal); }
+
+
+/* ── 7. SUS BAR CHART ANIMATION ─────────────────────────────── */
+
+.sus-bar-fill {
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* JS triggers .animated class when bar enters viewport */
+.sus-bar-fill.animated {
+  width: var(--target-width, 0%);
+}
+
+/* bar track shimmer while loading */
+.sus-bar-track {
+  position: relative;
+  overflow: hidden;
+}
+.sus-bar-track::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 400px 100%;
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+/* hide shimmer once bar is animated */
+.sus-bar-fill.animated ~ .sus-bar-track::after { opacity: 0; }
+
+
+/* ── 8. SCORE CIRCLE ANIMATION ──────────────────────────────── */
+
+.score-circle {
+  animation: scaleIn 0.7s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.score-num {
+  animation: countUp 0.5s 0.6s ease both;
+}
+
+/* rotating border glow on score circle */
+.score-circle::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(var(--teal-light) 0% 77.5%, transparent 77.5%);
+  animation: spinSlow 8s linear infinite;
+  opacity: 0.25;
+}
+
+
+/* ── 9. CONSENT BOX ─────────────────────────────────────────── */
+
+.consent-box {
+  animation: scaleIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* pulsing border on consent box */
+.consent-box {
+  animation: scaleIn 0.6s cubic-bezier(0.22,1,0.36,1) both,
+             borderPulse 4s 1s ease-in-out infinite;
+}
+
+.consent-section {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.consent-section.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* ── 10. TIMELINE DOTS ──────────────────────────────────────── */
+
+.timeline-dot {
+  transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              border-color 0.3s ease;
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--teal) !important;
+  transform: scale(1.4);
+  border-color: var(--teal-light);
+}
+
+/* stagger dots appearing */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.timeline-item.is-visible { opacity: 1; transform: translateX(0); }
+
+
+/* ── 11. SEVERITY BADGES ────────────────────────────────────── */
+
+.severity-badge {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.severity-badge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+/* ── 12. PROFILE STATS ──────────────────────────────────────── */
+
+.profile-stat {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+}
+.profile-stat:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--shadow);
+}
+
+.profile-stat-num {
+  display: inline-block;
+  animation: countUp 0.6s ease both;
+}
+
+
+/* ── 13. PHOTO PLACEHOLDERS ─────────────────────────────────── */
+
+.photo-placeholder {
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.photo-placeholder:hover {
+  background: var(--gray-200);
+  border-color: var(--teal);
+  transform: scale(1.03);
+}
+.photo-placeholder span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.photo-placeholder:hover span {
+  transform: scale(1.3) rotate(8deg);
+}
+
+
+/* ── 14. HERO BACKGROUND GRID PULSE ─────────────────────────── */
+
+.hero-bg {
+  animation: gradientShift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+
+/* ── 15. PAGE HERO (inner pages) ────────────────────────────── */
+
+.page-hero h1 {
+  animation: heroTextReveal 0.75s 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.page-hero p {
+  animation: fadeUp 0.6s 0.6s ease both;
+}
+.breadcrumb {
+  animation: fadeIn 0.5s 0.25s ease both;
+}
+
+
+/* ── 16. FOOTER ENTRANCE ────────────────────────────────────── */
+
+footer {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+  animation-play-state: paused;
+}
+footer.is-visible { animation-play-state: running; }
+
+
+/* ── 17. SUS TABLE ROWS ─────────────────────────────────────── */
+
+.sus-table tbody tr {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.sus-table tbody tr:hover {
+  background: var(--gray-100);
+  transform: scale(1.005);
+}
+.sus-table tbody tr td:first-child {
+  transition: color 0.2s ease;
+}
+.sus-table tbody tr:hover td:first-child {
+  color: var(--teal-dark);
+}
+
+/* radio circles pulse on row hover */
+.radio-circle {
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+.sus-table tbody tr:hover .radio-circle {
+  border-color: var(--teal);
+  transform: scale(1.15);
+}
+
+
+/* ── 18. SUMMARY TABLE ROWS ─────────────────────────────────── */
+
+.summary-table tbody tr {
+  transition: background 0.2s ease;
+}
+.summary-table tbody tr:hover td {
+  background: rgba(10,155,138,0.04);
+}
+.priority-dot {
+  transition: transform 0.2s ease;
+}
+.summary-table tbody tr:hover .priority-dot {
+  transform: scale(1.5);
+}
+
+
+/* ── 19. SECTION EYEBROW ANIMATION ──────────────────────────── */
+
+.section-eyebrow {
+  position: relative;
+  display: inline-block;
+}
+.section-eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 2px;
+  background: var(--teal);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.section-eyebrow.is-visible::after { width: 100%; }
+
+
+/* ── 20. BEFORE/AFTER BOX REVEAL ───────────────────────────── */
+
+.ba-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ba-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+
+/* ── 21. OPEN-ENDED LIST ITEMS ──────────────────────────────── */
+
+.open-ended-list li {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.open-ended-list li:hover {
+  transform: translateX(6px);
+  box-shadow: 0 4px 14px rgba(10,155,138,0.1);
+  border-left-color: var(--teal-dark);
+}
+
+
+/* ── 22. SCORE BREAKDOWN ITEMS ──────────────────────────────── */
+
+.score-item {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.score-item:hover { transform: translateY(-4px) scale(1.05); }
+
+
+/* ── 23. CALLOUT BOX ────────────────────────────────────────── */
+
+.callout {
+  border-left-width: 4px;
+  transition: border-color 0.4s ease, transform 0.3s ease;
+  animation: fadeUp 0.6s ease both;
+}
+.callout:hover {
+  border-color: var(--teal-light);
+  transform: translateX(4px);
+}
+
+
+/* ── REDUCED MOTION OVERRIDE ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
