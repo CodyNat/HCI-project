@@ -161,7 +161,7 @@
         counterObs.unobserve(el);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0, rootMargin: '0px' });
 
   // Auto-detect numeric elements to count up
   // Usage: add data-count="77.5" to any element with a number
@@ -171,13 +171,14 @@
     counterObs.observe(el);
   });
 
-  // Also animate .score-num automatically
+  // Also animate .score-num — always fires on load with a short delay
   document.querySelectorAll('.score-num').forEach(el => {
-    const raw = parseFloat(el.textContent);
-    if (!isNaN(raw)) {
-      el.setAttribute('data-count', raw);
+    const raw = el.getAttribute('data-count') || el.textContent.trim();
+    const target = parseFloat(raw);
+    if (!isNaN(target)) {
+      el.setAttribute('data-count', target);
       el.textContent = '0';
-      counterObs.observe(el);
+      setTimeout(() => animateCounter(el, target, 1400), 200);
     }
   });
 

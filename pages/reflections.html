@@ -3,138 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Results & Discussion — MediQuick HCI2 Report</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/animations.css" />
-  <style>
-    .page-hero {
-      background: var(--navy);
-      padding: 7rem 2rem 3.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(240,180,41,0.1), transparent 70%);
-    }
-    .page-hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 1.25rem;
-    }
-    .breadcrumb a { color: var(--blue-light); text-decoration: none; }
-    .page-hero h1 {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      color: white;
-      letter-spacing: -1px;
-      margin-bottom: 0.75rem;
-    }
-    .page-hero p { color: rgba(255,255,255,0.55); max-width: 540px; font-size: 1rem; }
+  <title>Reflections & Prototype — MediQuick HCI2 Report</title>
 
-    /* SUS bar chart */
-    .sus-bar-wrap { margin-bottom: 2.5rem; }
-    .sus-bar-item { margin-bottom: 1.1rem; }
-    .sus-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--gray-800);
-      margin-bottom: 0.35rem;
-    }
-    .sus-bar-label span { color: var(--gray-400); font-weight: 400; }
-    .sus-bar-track {
-      height: 8px;
-      background: var(--gray-100);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .sus-bar-fill {
-      height: 100%;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--green-dark), var(--blue-light));
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-      width: 0;
-    }
-    .sus-bar-fill.animated { width: var(--target-width); }
 
-    /* key issue list */
-    .issue-list { list-style: none; }
-    .issue-item {
-      display: flex;
-      gap: 1rem;
-      padding: 1.25rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--gray-200);
-      background: white;
-      margin-bottom: 0.75rem;
-      transition: var(--transition);
-    }
-    .issue-item:hover { box-shadow: var(--shadow); border-color: rgba(10,155,138,0.2); }
-    .issue-num {
-      width: 32px; height: 32px;
-      background: var(--navy);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Sora', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .issue-body { flex: 1; }
-    .issue-title { font-weight: 700; color: var(--navy); font-size: 0.92rem; margin-bottom: 0.25rem; }
-    .issue-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
-    .issue-heuristic {
-      display: inline-block;
-      margin-top: 0.4rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--green-dark);
-      background: rgba(10,155,138,0.08);
-      padding: 2px 8px;
-      border-radius: 4px;
-    }
+  
 
-    /* discussion prose */
-    .prose { color: var(--gray-800); line-height: 1.85; font-size: 0.95rem; }
-    .prose p { margin-bottom: 1.1rem; }
-    .prose strong { color: var(--navy); }
 
-    .callout {
-      background: linear-gradient(135deg, var(--navy), #1a3a55);
-      border-left: 4px solid var(--blue-light);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      padding: 1.25rem 1.5rem;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.9rem;
-      margin: 1.5rem 0;
-      font-style: italic;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
-  </style>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Sora:wght@600;700;800&display=swap');
 
@@ -295,7 +169,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--surface);
 /* SCORE DISPLAY */
 .score-display { background: var(--navy); border-radius: var(--radius); padding: 2.5rem; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 2rem; position: relative; overflow: hidden; }
 .score-display::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(26,115,232,0.15) 0%, transparent 60%), radial-gradient(ellipse 30% 40% at 10% 80%, rgba(52,168,83,0.10) 0%, transparent 50%); }
-.score-circle { width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(var(--blue-light) 0% 68.06%, rgba(255,255,255,0.08) 68.06% 100%); display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; z-index: 1; }
+.score-circle { width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(var(--blue-light) 0% 77.5%, rgba(255,255,255,0.08) 77.5% 100%); display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; z-index: 1; }
 .score-circle::after { content: ''; width: 110px; height: 110px; background: var(--navy); border-radius: 50%; position: absolute; }
 .score-value { position: relative; z-index: 1; text-align: center; }
 .score-num { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 800; color: white; line-height: 1; }
@@ -1151,11 +1025,13 @@ footer.is-visible { animation-play-state: running; }
   <ul class="nav-links" id="navLinks">
     <li><a href="../index.html">Home</a></li>
     <li><a href="data-gathering.html">Data Gathering</a></li>
-    <li><a href="results.html" class="active">Results & Discussion</a></li>
+    <li><a href="results.html">Results &amp; Discussion</a></li>
     <li><a href="recommendations.html">Recommendations</a></li>
-    <li><a href="reflections.html">Reflections</a></li>
+    <li><a href="reflections.html" class="active">Reflections</a></li>
   </ul>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="page-hero">
@@ -1163,633 +1039,228 @@ footer.is-visible { animation-play-state: running; }
     <div class="breadcrumb">
       <a href="../index.html">Home</a>
       <span>›</span>
-      <span>Results & Discussion</span>
+      <span>Reflections</span>
     </div>
-    <h1>Results & Discussion</h1>
-    <p>Usability testing outcomes, SUS score analysis, heuristic evaluation findings, and key issues identified in the MediQuick prototype.</p>
+    <h1>Reflections &amp; Prototype Walkthrough</h1>
+    <p>Individual team reflections on the HCI2 evaluation process, along with an interactive walkthrough of the MediQuick Figma prototype.</p>
   </div>
 </div>
 
-<!-- SUS SCORE -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-eyebrow">System Usability Scale</div>
-    <h2 class="section-title">Overall SUS Score</h2>
-    <p class="section-desc">Aggregate results from all respondents based on the 10-item SUS questionnaire administered after usability testing.</p>
+    <div class="tab-container">
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-reflections')">🪞 Team Reflections</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-prototype')">📱 Prototype Walkthrough</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-embed')">🖥️ Live Prototype</button>
+      </div>
 
-    <div class="score-display fade-up">
-      <div class="score-circle">
-        <div class="score-value">
-          <div class="score-num" data-count="68.06">68.06</div>
-          <div class="score-unit">/ 100</div>
+      <!-- REFLECTIONS -->
+      <div id="tab-reflections" class="tab-panel active">
+        <div class="section-eyebrow">Team Reflections</div>
+        <h2 class="section-title">Individual Learnings</h2>
+        <p class="section-desc">Each group member reflects on their experience conducting the HCI2 usability evaluation of the MediQuick prototype.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="reflection-grid">
+
+          <div class="reflection-card fade-up">
+            <div class="reflection-text">
+              Leading the MediQuick project taught me that building a system is only half the job — understanding how real users interact with it is equally important. Through this HCI2 evaluation, I realized that features we assumed were intuitive often caused confusion. The SUS testing results were humbling but necessary. Going forward, I will always incorporate usability testing early in the development cycle rather than treating it as an afterthought.
+            </div>
+            <div class="reflection-author">
+              <div class="r-avatar" style="background:linear-gradient(135deg,#1A73E8,#1557B0)">JS</div>
+              <div>
+                <div class="r-name">Jonas P. Sabenorio</div>
+                <div class="r-role">Group Leader · Developer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reflection-card fade-up">
+            <div class="reflection-text">
+              Working as a developer on this project alongside Jonas, I gained hands-on experience in translating design concepts into a working Figma prototype. The heuristic evaluation phase opened my eyes to design principles I had previously overlooked, particularly around consistency and user control. Learning how Nielsen's heuristics apply to real UI problems has made me a more conscious developer who thinks about the user at every design decision.
+            </div>
+            <div class="reflection-author">
+              <div class="r-avatar" style="background:linear-gradient(135deg,#0D8F80,#1BC9A8)">LV</div>
+              <div>
+                <div class="r-name">Laurence C. Villanueva</div>
+                <div class="r-role">Developer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reflection-card fade-up">
+            <div class="reflection-text">
+              Serving as the designer gave me a front-row view of how aesthetics and usability intersect — and sometimes conflict. Evaluating our own prototype critically required objectivity and genuine commitment to improving the user experience. The process deepened my understanding that good design is not about aesthetics alone but about empathy for the user's needs and mental models. This project will influence how I approach every future design challenge.
+            </div>
+            <div class="reflection-author">
+              <div class="r-avatar" style="background:linear-gradient(135deg,#7B4FA8,#B57FE0)">PS</div>
+              <div>
+                <div class="r-name">Pia A. San Esteban</div>
+                <div class="r-role">Designer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reflection-card fade-up">
+            <div class="reflection-text">
+              The usability testing sessions gave me direct exposure to how diverse users interact with digital systems differently. What surprised me most was how even small issues — like a missing back button or unclear category labels — could significantly disrupt a user's experience. Conducting the SUS evaluation with 40 respondents taught me the value of systematic, structured data collection, and I now appreciate why usability testing should be a standard step in any software development lifecycle.
+            </div>
+            <div class="reflection-author">
+              <div class="r-avatar" style="background:linear-gradient(135deg,#C47020,#F4A836)">PI</div>
+              <div>
+                <div class="r-name">Pauline Cris V. Illagan</div>
+                <div class="r-role">Evaluator</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reflection-card fade-up" style="grid-column:1 / -1;">
+            <div class="reflection-text">
+              This project reinforced for me that HCI is not just an academic subject — it is a practical discipline that shapes whether users succeed or fail when using a system. As an evaluator, I found the heuristic evaluation process particularly eye-opening: each of Nielsen's heuristics is a lens through which you can identify entirely different types of usability problems. The MediQuick evaluation has equipped me with frameworks I will carry into my professional career as a future technology practitioner.
+            </div>
+            <div class="reflection-author">
+              <div class="r-avatar" style="background:linear-gradient(135deg,#A03030,#E06060)">LP</div>
+              <div>
+                <div class="r-name">Leslie F. Panagan</div>
+                <div class="r-role">Evaluator</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="score-info">
-        <div class="score-grade">C — Acceptable</div>
-        <div class="score-detail">The MediQuick prototype scored at the industry average SUS benchmark of 68, placing it in the "Acceptable" (C-grade) range. This indicates the system is functional but has clear opportunities for improvement.</div>
-        <div class="score-breakdown">
-          <div class="score-item">
-            <div class="score-item-val">40</div>
-            <div class="score-item-label">Respondents</div>
+
+      <!-- PROTOTYPE WALKTHROUGH -->
+      <div id="tab-prototype" class="tab-panel">
+        <div class="section-eyebrow">Prototype Walkthrough</div>
+        <h2 class="section-title">Key User Flows</h2>
+        <p class="section-desc">A guided walkthrough of the main user flows evaluated during usability testing. Each step corresponds to tasks performed by the 40 respondents.</p>
+
+        <div class="walkthrough-grid">
+
+          <div class="walk-card fade-up">
+            <div class="walk-step-num">1</div>
+            <div class="walk-title">Landing &amp; Browse</div>
+            <div class="walk-desc">Users land on the MediQuick homepage and explore the medicine catalog. The primary navigation and category browsing flow were the first points evaluated for learnability.</div>
+            <span class="walk-tag">Heuristic #1 — Visibility</span>
           </div>
-          <div class="score-item">
-            <div class="score-item-val">68</div>
-            <div class="score-item-label">Industry Avg.</div>
+
+          <div class="walk-card fade-up">
+            <div class="walk-step-num">2</div>
+            <div class="walk-title">Search &amp; Filter</div>
+            <div class="walk-desc">Users search for a specific medicine using the search bar and apply category filters. Evaluators noted the disconnect between medical terminology labels and everyday language during this step.</div>
+            <span class="walk-tag">Heuristic #2 — Real World Match</span>
           </div>
-          <div class="score-item">
-            <div class="score-item-val">+0.06</div>
-            <div class="score-item-label">Above Avg.</div>
+
+          <div class="walk-card fade-up">
+            <div class="walk-step-num">3</div>
+            <div class="walk-title">Product Detail View</div>
+            <div class="walk-desc">Users navigate to a product detail page. Information hierarchy issues were identified here — the "Add to Cart" CTA was often missed due to visual clutter on the page.</div>
+            <span class="walk-tag">Heuristic #8 — Minimalist Design</span>
+          </div>
+
+          <div class="walk-card fade-up">
+            <div class="walk-step-num">4</div>
+            <div class="walk-title">Cart &amp; Checkout</div>
+            <div class="walk-desc">Users add items to cart and proceed through checkout. This was the highest-severity issue area — the form lacked inline validation and no confirmation screen was present before final submission.</div>
+            <span class="walk-tag">Heuristic #5 — Error Prevention</span>
+          </div>
+
+          <div class="walk-card fade-up">
+            <div class="walk-step-num">5</div>
+            <div class="walk-title">Order Tracking</div>
+            <div class="walk-desc">Users attempt to track a placed order. The prototype provided limited real-time status feedback, which was flagged under the Visibility of System Status heuristic.</div>
+            <span class="walk-tag">Heuristic #1 — System Status</span>
+          </div>
+
+          <div class="walk-card fade-up">
+            <div class="walk-step-num">6</div>
+            <div class="walk-title">Error Recovery</div>
+            <div class="walk-desc">Users encountered simulated errors (e.g., out-of-stock, failed search). Generic error messages like "Something went wrong" left users unsure how to proceed — a major finding of the evaluation.</div>
+            <span class="walk-tag">Heuristic #9 — Error Recovery</span>
+          </div>
+
+        </div>
+
+        <!-- Additional findings -->
+        <div style="margin-top:3rem;">
+          <div class="section-eyebrow">Additional Findings</div>
+          <h3 style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);font-size:1.4rem;margin-bottom:1rem;">What Users Said</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+            <div class="card" style="border-left:4px solid var(--green);">
+              <div style="font-size:1.25rem;margin-bottom:0.5rem;">👍</div>
+              <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:0.75rem;font-size:0.95rem;">What Users Liked Most</div>
+              <ul style="list-style:none;font-size:0.85rem;color:var(--gray-600);line-height:1.9;">
+                <li>• Clean, professional visual design</li>
+                <li>• Easy to understand overall layout</li>
+                <li>• Search function was responsive and fast</li>
+                <li>• Cart management was straightforward</li>
+                <li>• The concept of online pharmacy delivery</li>
+              </ul>
+            </div>
+            <div class="card" style="border-left:4px solid var(--accent-red);">
+              <div style="font-size:1.25rem;margin-bottom:0.5rem;">👎</div>
+              <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:0.75rem;font-size:0.95rem;">What Users Liked Least</div>
+              <ul style="list-style:none;font-size:0.85rem;color:var(--gray-600);line-height:1.9;">
+                <li>• Confusing medical category names</li>
+                <li>• No confirmation before checkout submission</li>
+                <li>• Vague error messages with no guidance</li>
+                <li>• Inconsistent button styles across screens</li>
+                <li>• Cluttered product detail pages</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    
+      <!-- LIVE PROTOTYPE EMBED -->
+      <div id="tab-embed" class="tab-panel">
+        <div class="section-eyebrow">Live Prototype</div>
+        <h2 class="section-title">Interactive Figma Prototype</h2>
+        <p class="section-desc">View and interact with the MediQuick prototype directly below, or open it in Figma for the full experience.</p>
 
-    <!-- per-question bar chart -->
-    <h3 style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);font-size:1.1rem;margin-bottom:1.5rem;">Per-Question Average Scores</h3>
-    <div class="sus-bar-wrap fade-up">
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q1 — I would like to use this system frequently <span>4.53 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:90.6%"></div></div>
+        <div class="figma-wrapper fade-up">
+          <div class="figma-toolbar">
+            <div class="figma-dot red"></div>
+            <div class="figma-dot amber"></div>
+            <div class="figma-dot green"></div>
+            <div class="figma-url">figma.com/design/sEEvLfKsCr0axyzD2zNA6z/E-commers-Project-MediQuick</div>
+          </div>
+          <iframe
+            class="figma-embed"
+            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FsEEvLfKsCr0axyzD2zNA6z%2FE-commers-Project-MediQuick%3Fnode-id%3D0-1"
+            allowfullscreen
+            title="MediQuick Figma Prototype"
+            onerror="this.style.display='none';document.getElementById('figma-fallback').style.display='flex';"
+          ></iframe>
+          <div id="figma-fallback" class="figma-fallback" style="display:none;">
+            <div class="fig-icon">🎨</div>
+            <div style="font-weight:700;color:white;font-size:1.1rem;">MediQuick Figma Prototype</div>
+            <div>The embedded preview requires Figma access. Click below to open it directly.</div>
+            <a href="https://www.figma.com/design/sEEvLfKsCr0axyzD2zNA6z/E-commers-Project-MediQuick?node-id=0-1" target="_blank" rel="noopener">
+              Open in Figma →
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;background:var(--gray-100);border-radius:var(--radius-sm);padding:1rem 1.25rem;font-size:0.85rem;color:var(--gray-600);display:flex;align-items:center;gap:0.75rem;">
+          <span style="font-size:1.1rem;">💡</span>
+          <span>If the embed doesn't load, the prototype may require a Figma account. <a href="https://www.figma.com/design/sEEvLfKsCr0axyzD2zNA6z/E-commers-Project-MediQuick?node-id=0-1" target="_blank" style="color:var(--blue);font-weight:700;">Open in Figma →</a></span>
+        </div>
       </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q2 — The system is unnecessarily complex <span>2.85 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:57%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q3 — The system was easy to use <span>4.53 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:90.6%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q4 — I need technical support to use this <span>3.95 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:79%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q5 — Functions were well integrated <span>4.65 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:93%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q6 — Too much inconsistency in this system <span>2.60 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:52%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q7 — Most people would learn quickly <span>4.50 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:90%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q8 — The system was cumbersome to use <span>2.73 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:54.6%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q9 — I felt confident using the system <span>4.58 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:91.6%"></div></div>
-      </div>
-      <div class="sus-bar-item">
-        <div class="sus-bar-label">Q10 — I needed to learn a lot before using <span>3.42 / 5</span></div>
-        <div class="sus-bar-track"><div class="sus-bar-fill" style="--target-width:68.4%"></div></div>
-      </div>
-    </div>
-    <p style="font-size:0.78rem;color:var(--gray-400);">* Replace all per-question values above with your actual average scores per item.</p>
+
+    </div><!-- /tab-container -->
   </div>
 </section>
 
-<!-- HEURISTIC EVALUATION -->
-<section class="section">
-  <div class="container">
-    <div class="section-eyebrow">Heuristic Evaluation</div>
-    <h2 class="section-title">Nielsen's 10 Usability Heuristics</h2>
-    <p class="section-desc">Each group member independently evaluated the prototype against Jakob Nielsen's 10 usability heuristics. Issues are rated by severity.</p>
-
-    <div class="heuristic-grid">
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">1</div>
-        <div class="severity-badge severity-low">No Issue</div>
-        <div class="heuristic-title">Visibility of System Status</div>
-        <div class="heuristic-desc">The system generally keeps users informed about what's going on through loading indicators and status messages during key interactions.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Add real-time order tracking status updates to improve feedback during the delivery process.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">2</div>
-        <div class="severity-badge severity-medium">Minor Issue</div>
-        <div class="heuristic-title">Match Between System & Real World</div>
-        <div class="heuristic-desc">Some medical terminology and category labels may be unfamiliar to non-expert users, creating a slight disconnect from everyday language.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Use plain, patient-friendly language for medicine categories and descriptions.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">3</div>
-        <div class="severity-badge severity-low">No Issue</div>
-        <div class="heuristic-title">User Control & Freedom</div>
-        <div class="heuristic-desc">Users can easily navigate back, modify their cart, and cancel actions throughout the checkout flow.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Consider adding an undo option when items are removed from the cart.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">4</div>
-        <div class="severity-badge severity-medium">Minor Issue</div>
-        <div class="heuristic-title">Consistency & Standards</div>
-        <div class="heuristic-desc">Some button styles and icon usage are inconsistent across different screens, which may cause confusion for first-time users.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Establish a unified design system with consistent button sizes, colors, and icon styles across all screens.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">5</div>
-        <div class="severity-badge severity-high">Major Issue</div>
-        <div class="heuristic-title">Error Prevention</div>
-        <div class="heuristic-desc">The checkout form lacks sufficient validation and confirmation prompts, allowing users to submit incomplete or incorrect orders without adequate warning.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Implement inline form validation, required field indicators, and an order review/confirmation screen before final submission.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">6</div>
-        <div class="severity-badge severity-medium">Minor Issue</div>
-        <div class="heuristic-title">Recognition Rather Than Recall</div>
-        <div class="heuristic-desc">Users must remember previously viewed medicines when comparing options, as there is no persistent comparison or recently-viewed feature.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Add a "Recently Viewed" section and a product comparison feature to reduce memory load.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">7</div>
-        <div class="severity-badge severity-low">No Issue</div>
-        <div class="heuristic-title">Flexibility & Efficiency of Use</div>
-        <div class="heuristic-desc">The search and filter functionality allows experienced users to quickly find specific medicines, supporting efficient task completion.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Add keyboard shortcuts and quick-reorder options for returning customers.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">8</div>
-        <div class="severity-badge severity-medium">Minor Issue</div>
-        <div class="heuristic-title">Aesthetic & Minimalist Design</div>
-        <div class="heuristic-desc">Some product pages contain excessive text and competing visual elements that distract from the primary action of adding items to the cart.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Simplify product detail pages by prioritizing essential information and reducing visual noise.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">9</div>
-        <div class="severity-badge severity-high">Major Issue</div>
-        <div class="heuristic-title">Help Users Recognize, Diagnose & Recover from Errors</div>
-        <div class="heuristic-desc">Error messages are generic and do not provide actionable guidance, leaving users unsure how to resolve the problem.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Rewrite all error messages to be specific, human-readable, and include clear next steps for resolution.</div>
-      </div>
-
-      <div class="heuristic-card fade-up">
-        <div class="heuristic-num">10</div>
-        <div class="severity-badge severity-low">No Issue</div>
-        <div class="heuristic-title">Help & Documentation</div>
-        <div class="heuristic-desc">Basic help text is available on key screens. The prototype includes a visible FAQ section accessible from the main navigation.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Consider adding contextual tooltips and an in-app chat support option for urgent queries.</div>
-      </div>
-
-    </div>
-
-    <div style="margin-top:2rem;background:var(--gray-100);border-radius:var(--radius);padding:1.25rem 1.5rem;font-size:0.85rem;color:var(--gray-600);">
-      <strong style="color:var(--navy);">📝 Note to Group:</strong> The heuristic findings above are sample/placeholder content. Replace each card with the actual findings from your group members' individual Heuristic Evaluation Workbooks. Update severity badges (High/Medium/Low) to match your actual ratings.
-    </div>
-  </div>
-</section>
-
-<!-- KEY ISSUES -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-eyebrow">Summary</div>
-    <h2 class="section-title">Key Issues Identified</h2>
-    <p class="section-desc">The most critical usability problems discovered through both heuristic evaluation and usability testing sessions.</p>
-
-    <ul class="issue-list">
-      <div class="fade-up">
-        <li class="issue-item">
-          <div class="issue-num">1</div>
-          <div class="issue-body">
-            <div class="issue-title">Insufficient Error Prevention at Checkout</div>
-            <div class="issue-desc">Users were able to proceed through the checkout flow with missing required fields, leading to failed submissions and frustration. No inline validation or confirmation step existed before the final order was placed.</div>
-            <span class="issue-heuristic">Heuristic #5 — Error Prevention</span>
-          </div>
-          <div class="severity-badge severity-high" style="flex-shrink:0;align-self:flex-start;">High</div>
-        </li>
-      </div>
-      <div class="fade-up">
-        <li class="issue-item">
-          <div class="issue-num">2</div>
-          <div class="issue-body">
-            <div class="issue-title">Unclear and Generic Error Messages</div>
-            <div class="issue-desc">When errors occurred (e.g., out-of-stock items, failed search), the system displayed vague messages such as "Something went wrong" without indicating the cause or how to recover.</div>
-            <span class="issue-heuristic">Heuristic #9 — Error Recovery</span>
-          </div>
-          <div class="severity-badge severity-high" style="flex-shrink:0;align-self:flex-start;">High</div>
-        </li>
-      </div>
-      <div class="fade-up">
-        <li class="issue-item">
-          <div class="issue-num">3</div>
-          <div class="issue-body">
-            <div class="issue-title">Inconsistent UI Components Across Screens</div>
-            <div class="issue-desc">Different button styles and icon treatments were observed across the home screen, product listing, and cart pages, reducing the perceived professionalism of the interface and slowing user navigation.</div>
-            <span class="issue-heuristic">Heuristic #4 — Consistency & Standards</span>
-          </div>
-          <div class="severity-badge severity-medium" style="flex-shrink:0;align-self:flex-start;">Medium</div>
-        </li>
-      </div>
-      <div class="fade-up">
-        <li class="issue-item">
-          <div class="issue-num">4</div>
-          <div class="issue-body">
-            <div class="issue-title">Medical Terminology Unfamiliar to General Users</div>
-            <div class="issue-desc">Category labels such as "Analgesics," "Antipyretics," and "Antihypertensives" were difficult for non-medical users to interpret, causing navigation confusion during task completion.</div>
-            <span class="issue-heuristic">Heuristic #2 — Match with Real World</span>
-          </div>
-          <div class="severity-badge severity-medium" style="flex-shrink:0;align-self:flex-start;">Medium</div>
-        </li>
-      </div>
-      <div class="fade-up">
-        <li class="issue-item">
-          <div class="issue-num">5</div>
-          <div class="issue-body">
-            <div class="issue-title">Cluttered Product Detail Pages</div>
-            <div class="issue-desc">Product pages contained too much information presented without clear visual hierarchy, making it difficult for users to quickly identify the primary call-to-action (Add to Cart button).</div>
-            <span class="issue-heuristic">Heuristic #8 — Aesthetic & Minimalist Design</span>
-          </div>
-          <div class="severity-badge severity-medium" style="flex-shrink:0;align-self:flex-start;">Medium</div>
-        </li>
-      </div>
-    </ul>
-  </div>
-</section>
-
-<!-- DISCUSSION -->
-<section class="section">
-  <div class="container">
-    <div class="two-col">
-      <div>
-        <div class="section-eyebrow">Discussion</div>
-        <h2 class="section-title" style="font-size:2rem;">Discussion of Findings</h2>
-        <div class="prose fade-up">
-          <p>The usability evaluation of the MediQuick prototype revealed a system that is generally functional and meets the basic expectations of an online pharmacy platform. The overall SUS score of <strong>68.06</strong> places the prototype in the "Acceptable" (C) range, indicating that users found the system acceptable and reasonably easy to use for common tasks.</p>
-          <p>However, the heuristic evaluation surfaced several recurring issues that, if left unaddressed, could significantly impact the experience of non-technical users — particularly those with limited digital literacy or unfamiliarity with medical terminology.</p>
-          <p>The two most critical issues — <strong>insufficient error prevention</strong> and <strong>unclear error messaging</strong> — represent fundamental gaps in the current prototype's ability to guide users through failure scenarios. These findings are consistent with usability literature suggesting that error recovery support is one of the most impactful factors in user satisfaction.</p>
-          <div class="callout">"Users are not the problem. The design is the problem." — Don Norman, The Design of Everyday Things</div>
-          <p>Positive findings include strong scores on learnability (Q7) and perceived frequency of use (Q1), suggesting that first-time users found the overall concept compelling and the core navigation model intuitive. This is a strong foundation upon which targeted improvements can be built.</p>
-        </div>
-      </div>
-      <div class="fade-up" style="display:flex;flex-direction:column;gap:1.25rem;padding-top:4.5rem;">
-        <div class="card" style="border-left:4px solid var(--blue);">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem;">✅</div>
-          <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:0.4rem;">Strengths</div>
-          <ul style="list-style:none;font-size:0.85rem;color:var(--gray-600);display:flex;flex-direction:column;gap:0.4rem;">
-            <li>• Intuitive core navigation structure</li>
-            <li>• High learnability for new users</li>
-            <li>• Strong perceived usefulness</li>
-            <li>• Effective search and filter features</li>
-            <li>• Clear cart management flow</li>
-          </ul>
-        </div>
-        <div class="card" style="border-left:4px solid var(--accent);">
-          <div style="font-size:1.5rem;margin-bottom:0.5rem;">⚠️</div>
-          <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--navy);margin-bottom:0.4rem;">Areas for Improvement</div>
-          <ul style="list-style:none;font-size:0.85rem;color:var(--gray-600);display:flex;flex-direction:column;gap:0.4rem;">
-            <li>• Form validation at checkout</li>
-            <li>• Error message clarity</li>
-            <li>• Consistent UI components</li>
-            <li>• Plain-language category labels</li>
-            <li>• Product page information hierarchy</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-eyebrow">Individual Scores</div>
-    <h2 class="section-title">Complete SUS Score Table</h2>
-    <p class="section-desc">Per-respondent scores from all 40 participants. Overall average: <strong>68.06 / 100 — C (Acceptable)</strong>.</p>
-    <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--gray-100);box-shadow:var(--shadow);">
-      <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
-        <thead>
-          <tr style="background:var(--navy);color:white;">
-            <th style="padding:10px 12px;">#</th>
-            <th style="padding:10px 12px;text-align:left;">Name</th>
-            <th style="padding:10px 12px;">Q1–Q10 Raw Scores</th>
-            <th style="padding:10px 12px;">SUS Score</th>
-            <th style="padding:10px 12px;">Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">1</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Cianyl Pancho</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 5 5 5 3 5 3 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">65.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">2</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Denise Ashley R. Totanes</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 1 4 3 4 1 5 1 4 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">77.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">3</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Ashley F. Palenciana</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 4 5 4 5 4 5 4 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">60.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">4</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Cyrus Johair C. Zape</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 4 4 3 5 2 4 5 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">65.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">5</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Winnie Bo</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 3 4 2 4 3 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">70.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">6</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Shiela A. Jallores</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 2 5 2 5 1 5 2 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">87.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">7</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jhon Ray P. Saor</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 4 3 4 3 4 3 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">67.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">8</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Kent R. Debil</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 4 4 5 3 5 4 4 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">57.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">9</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">John Jurie P. Clariño</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 1 5 5 5 1 5 1 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">82.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">10</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jemuel G. Tabaco</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 5 5 5 5 1 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">67.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">11</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Neil Patrick P. Tenorio</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 2 4 4 5 4 4 3 4 2</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">65.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">12</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Rigde E. Duran</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 2 4 4 5 4 4 2 4 2</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">70.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">13</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Michille P. Alcantara</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 5 5 4 3 5 4 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">62.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">14</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jessa R. Estaye</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 4 5 3 4 3 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">70.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">15</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jhon Aldwen A.Livogue</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 5 5 4 3 5 3 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">65.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">16</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">MJ G. Tesoro</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 4 5 4 5 2 4 3 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">67.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">17</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Gabriel Belette</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 4 3 5 4 4 4 4 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">55.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">18</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Lawrence Jay C. Alano</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 4 4 4 5 2 4 3 5 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">62.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">19</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Miguel Sodelver D. Ras</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 5 4 5 3 4 4 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">62.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">20</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Joy Carla  B. Callo</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 4 4 5 5 3 4 3 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">60.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">21</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Marjorie N. Reyes</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 4 4 4 3 5 5 5 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">57.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">22</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Josh Peter M. Cea</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 4 5 4 5 2 5 3 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">67.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">23</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Lyka Robles</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 5 5 1 4 1 5 2</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">80.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">24</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jessica Mercado</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 2 4 2 4 2 4 3 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">72.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">25</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Leandro O. Porteza</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 1 4 5 5 3 5 1 5 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">72.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">26</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Christine Salazar</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 5 5 4 4 2 5 2 4 2</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">67.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">27</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Aaron Villaflor</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 4 5 4 5 5 5 3 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">60.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">28</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Ian Maila</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 2 4 5 4 2 4 3 4 2</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">65.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">29</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Maida Dador</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 2 4 4 5 2 4 2 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">70.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">30</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Recel Adayo</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 2 5 4 5 2 5 2 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">77.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">31</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jude T. De Castro</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 4 4 4 2 4 2 4 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">62.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">32</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Manuela O. Opeda</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 2 4 4 5 2 5 2 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">75.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">33</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Chesca Flores</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 4 5 2 5 1 4 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">72.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">34</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jerome Paga</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 4 4 3 5 3 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">70.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">35</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Pedral Elsa</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 2 5 4 5 2 4 2 5 2</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">80.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">36</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Jeric Gonzales</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 5 2 4 2 5 4 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">72.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">37</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Ivan Kendrick Castelar</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 4 4 4 2 4 3 4 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">65.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">38</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Maritoni C. Vinces</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 4 4 5 5 4 4 5 5</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">52.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:white;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">39</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">Lorelyn Favor</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">5 3 4 4 4 2 4 2 5 4</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#f59e0b;">67.5</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#fef9c3;color:#f59e0b;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Acceptable</span></td>
-    </tr>
-<tr style="background:#f9fafb;">
-      <td style="padding:9px 12px;text-align:center;font-weight:700;">40</td>
-      <td style="padding:9px 12px;font-weight:600;color:var(--navy);">(Respondent 40)</td>
-      <td style="padding:9px 12px;text-align:center;font-family:monospace;font-size:0.8rem;color:var(--gray-600);">4 3 5 4 5 2 5 2 5 3</td>
-      <td style="padding:9px 12px;text-align:center;font-weight:800;color:#22c55e;">75.0</td>
-      <td style="padding:9px 12px;text-align:center;"><span style="background:#dcfce7;color:#22c55e;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:700;">Good</span></td>
-    </tr>
-
-          <tr style="background:var(--navy);color:white;font-weight:800;">
-            <td colspan="3" style="padding:12px;text-align:right;">Average SUS Score</td>
-            <td style="padding:12px;text-align:center;font-size:1.1rem;">68.06</td>
-            <td style="padding:12px;text-align:center;">C — Acceptable</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
 <footer>
   <p>HCI2 Final Project · <strong>Partido State University</strong> · College of Engineering and Computational Sciences</p>
   <p style="margin-top:0.35rem;">Course Instructor: <strong>Michael B. Amata</strong> · Group Leader: <strong>Jonas P. Sabenorio</strong></p>
 </footer>
 
-<script src="../assets/js/main.js"></script>
-<script src="../assets/js/animations.js"></script>
-<script>
-  // Animate bars on scroll
-  const bars = document.querySelectorAll('.sus-bar-fill');
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('animated'), 200);
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  bars.forEach(b => barObserver.observe(b));
-</script>
+
+
 <script>
 // Nav active state & hamburger
 const navLinks = document.querySelectorAll('.nav-links a');
@@ -2320,6 +1791,8 @@ tabBtns.forEach(btn => {
   });
 
 })();
+</script>
+</body>
 </script>
 </body>
 </html>

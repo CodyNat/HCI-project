@@ -193,6 +193,1011 @@
     .dot-medium { background: var(--accent-gold); }
     .dot-low { background: var(--blue); }
   </style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Sora:wght@600;700;800&display=swap');
+
+:root {
+  --blue:        #1A73E8;
+  --blue-dark:   #1557B0;
+  --blue-light:  #4DA3FF;
+  --blue-pale:   #EBF3FF;
+
+  --green:       #34A853;
+  --green-dark:  #1E7A38;
+  --green-light: #50C878;
+  --green-pale:  #E8F5EC;
+
+  --navy:        #0A1628;
+  --navy-mid:    #0E1F3D;
+  --navy-card:   #112244;
+  --white:       #FFFFFF;
+  --surface:     #F7F9FC;
+
+  --gray-50:     #F0F4FA;
+  --gray-100:    #E4EAF4;
+  --gray-200:    #C8D3E8;
+  --gray-400:    #7E93B8;
+  --gray-600:    #4A5E80;
+  --gray-800:    #1C2B45;
+
+  --accent-red:  #E53935;
+  --accent-gold: #F9A825;
+
+  --radius:      16px;
+  --radius-sm:   8px;
+  --shadow:      0 4px 24px rgba(26,115,232,0.10);
+  --shadow-lg:   0 12px 48px rgba(26,115,232,0.16);
+  --transition:  all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--surface); color: var(--gray-800); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+
+/* NAVBAR */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,22,40,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(26,115,232,0.18); padding: 0 2rem; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo { width: 38px; height: 38px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 13px; color: white; letter-spacing: -0.5px; position: relative; overflow: hidden; }
+.nav-logo::after { content: ''; position: absolute; width: 18px; height: 4px; background: var(--green-light); border-radius: 2px; transform: rotate(-30deg); }
+.nav-title { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: white; }
+.nav-title .green { color: var(--green-light); }
+.nav-links { display: flex; align-items: center; gap: 0.15rem; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.875rem; font-weight: 600; padding: 0.45rem 0.9rem; border-radius: var(--radius-sm); transition: var(--transition); white-space: nowrap; }
+.nav-links a:hover { color: white; background: rgba(26,115,232,0.18); }
+.nav-links a.active { color: white; background: rgba(26,115,232,0.25); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: var(--transition); }
+
+/* HERO */
+.hero { min-height: 100vh; background: var(--navy); position: relative; display: flex; align-items: center; overflow: hidden; padding: 8rem 2rem 6rem; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 60% at 75% 35%, rgba(26,115,232,0.20) 0%, transparent 65%), radial-gradient(ellipse 40% 40% at 15% 75%, rgba(52,168,83,0.14) 0%, transparent 55%); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,115,232,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,115,232,0.05) 1px, transparent 1px); background-size: 52px 52px; }
+.hero-container { position: relative; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(52,168,83,0.14); border: 1px solid rgba(52,168,83,0.35); border-radius: 999px; padding: 6px 16px; font-size: 0.78rem; font-weight: 700; color: var(--green-light); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--green-light); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; color: white; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 1.25rem; }
+.hero h1 .highlight-blue { background: linear-gradient(135deg, var(--blue-light), #81C1FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero h1 .highlight-green { background: linear-gradient(135deg, var(--green-light), #7DEFA0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-desc { color: rgba(255,255,255,0.62); font-size: 1.05rem; max-width: 480px; margin-bottom: 2rem; line-height: 1.75; }
+.hero-cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); color: white; padding: 0.7rem 1.5rem; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: var(--transition); box-shadow: 0 4px 16px rgba(26,115,232,0.35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,115,232,0.45); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); padding: 0.7rem 1.5rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: var(--transition); }
+.btn-secondary:hover { background: rgba(255,255,255,0.12); color: white; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.hero-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: var(--radius-sm); padding: 5px 12px; font-size: 0.78rem; color: rgba(255,255,255,0.65); font-weight: 500; }
+
+/* Hero card */
+.hero-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(26,115,232,0.22); border-radius: var(--radius); padding: 2rem; backdrop-filter: blur(10px); }
+.hero-card-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: var(--blue-light); font-weight: 700; margin-bottom: 1.5rem; }
+.member-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.member-item { display: flex; align-items: center; gap: 10px; }
+.member-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--blue-dark), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.85rem; color: white; flex-shrink: 0; }
+.member-avatar.green { background: linear-gradient(135deg, var(--green-dark), var(--green-light)); }
+.member-info { flex: 1; min-width: 0; }
+.member-name { font-size: 0.82rem; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.member-role { font-size: 0.72rem; color: rgba(255,255,255,0.42); }
+.hero-prototype { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; }
+.proto-label { font-size: 0.75rem; color: rgba(255,255,255,0.38); }
+.proto-link { display: flex; align-items: center; gap: 5px; color: var(--green-light); font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: var(--transition); }
+.proto-link:hover { opacity: 0.8; }
+
+/* SECTIONS */
+.section { padding: 5rem 2rem; }
+.section-alt { background: white; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2.5px; font-weight: 800; color: var(--blue); margin-bottom: 0.65rem; display: flex; align-items: center; gap: 8px; }
+.section-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 2px; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 2px; }
+.section-title { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); letter-spacing: -1px; line-height: 1.15; margin-bottom: 1rem; }
+.section-desc { color: var(--gray-600); max-width: 560px; margin-bottom: 3rem; font-size: 0.97rem; line-height: 1.75; }
+
+/* CARDS */
+.card { background: white; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 1.75rem; transition: var(--transition); }
+.card:hover { box-shadow: var(--shadow); border-color: rgba(26,115,232,0.2); transform: translateY(-2px); }
+
+/* TABS */
+.tab-nav { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; border-bottom: 2px solid var(--gray-100); overflow-x: auto; }
+.tab-btn { padding: 0.75rem 1.25rem; border: none; background: none; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--gray-400); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: var(--transition); white-space: nowrap; }
+.tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* CONSENT */
+.consent-box { background: var(--navy); border-radius: var(--radius); padding: 2.5rem; color: white; position: relative; overflow: hidden; }
+.consent-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(26,115,232,0.18), transparent 70%); }
+.consent-box::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(52,168,83,0.12), transparent 70%); }
+.consent-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1; }
+.consent-icon { width: 48px; height: 48px; background: rgba(26,115,232,0.2); border: 1px solid rgba(26,115,232,0.4); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+.consent-title { font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem; }
+.consent-subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+.consent-section { margin-bottom: 1.25rem; position: relative; z-index: 1; }
+.consent-section-title { font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--blue-light); margin-bottom: 0.5rem; }
+.consent-section p { font-size: 0.9rem; color: rgba(255,255,255,0.72); line-height: 1.7; }
+.consent-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); position: relative; z-index: 1; }
+.consent-field label { display: block; font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.45); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.consent-field .field-line { height: 1px; background: rgba(255,255,255,0.22); width: 100%; }
+
+/* SUS TABLE */
+.sus-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.9rem; }
+.sus-table thead tr { background: var(--navy); color: white; }
+.sus-table th { padding: 0.9rem 1rem; font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700; text-align: center; }
+.sus-table th:first-child { text-align: left; }
+.sus-table td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--gray-50); vertical-align: middle; text-align: center; }
+.sus-table td:first-child { text-align: left; color: var(--gray-800); font-weight: 500; width: 50%; }
+.sus-table tr:hover td { background: var(--gray-50); }
+.radio-circle { width: 18px; height: 18px; border: 2px solid var(--gray-200); border-radius: 50%; margin: 0 auto; }
+
+/* PROFILE */
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; }
+.profile-stat { background: linear-gradient(135deg, var(--blue-pale), white); border: 1px solid var(--gray-100); border-radius: var(--radius-sm); padding: 1.5rem; text-align: center; }
+.profile-stat-num { font-family: 'Sora', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.4rem; }
+.profile-stat-label { font-size: 0.82rem; color: var(--gray-600); font-weight: 600; }
+
+/* HEURISTIC CARDS */
+.heuristic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+.heuristic-card { background: white; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 1.5rem; position: relative; overflow: hidden; transition: var(--transition); }
+.heuristic-card:hover { border-color: var(--blue); box-shadow: var(--shadow); transform: translateY(-2px); }
+.heuristic-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--green)); opacity: 0; transition: opacity 0.3s; }
+.heuristic-card:hover::before { opacity: 1; }
+.heuristic-num { font-family: 'Sora', sans-serif; font-size: 3rem; font-weight: 800; color: rgba(26,115,232,0.08); position: absolute; top: 0.5rem; right: 1rem; line-height: 1; }
+.severity-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; }
+.severity-high { background: #FFEBEE; color: var(--accent-red); }
+.severity-medium { background: #FFF8E1; color: #E65100; }
+.severity-low { background: var(--green-pale); color: var(--green-dark); }
+.heuristic-title { font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.heuristic-desc { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1rem; line-height: 1.65; }
+.heuristic-rec { background: var(--gray-50); border-left: 3px solid var(--blue); padding: 0.75rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.82rem; color: var(--gray-800); }
+.heuristic-rec strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--blue); margin-bottom: 0.25rem; }
+
+/* SCORE DISPLAY */
+.score-display { background: var(--navy); border-radius: var(--radius); padding: 2.5rem; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 2rem; position: relative; overflow: hidden; }
+.score-display::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(26,115,232,0.15) 0%, transparent 60%), radial-gradient(ellipse 30% 40% at 10% 80%, rgba(52,168,83,0.10) 0%, transparent 50%); }
+.score-circle { width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(var(--blue-light) 0% 77.5%, rgba(255,255,255,0.08) 77.5% 100%); display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; z-index: 1; }
+.score-circle::after { content: ''; width: 110px; height: 110px; background: var(--navy); border-radius: 50%; position: absolute; }
+.score-value { position: relative; z-index: 1; text-align: center; }
+.score-num { font-family: 'Sora', sans-serif; font-size: 2rem; font-weight: 800; color: white; line-height: 1; }
+.score-unit { font-size: 0.7rem; color: rgba(255,255,255,0.45); }
+.score-info { flex: 1; position: relative; z-index: 1; }
+.score-grade { font-family: 'Sora', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--green-light); margin-bottom: 0.5rem; }
+.score-detail { color: rgba(255,255,255,0.58); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6; }
+.score-breakdown { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.score-item { text-align: center; }
+.score-item-val { font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 700; color: white; }
+.score-item-label { font-size: 0.72rem; color: rgba(255,255,255,0.38); }
+
+/* SUS BAR */
+.sus-bar-wrap { margin-bottom: 2.5rem; }
+.sus-bar-item { margin-bottom: 1.1rem; }
+.sus-bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; color: var(--gray-800); margin-bottom: 0.35rem; }
+.sus-bar-label span { color: var(--gray-400); font-weight: 400; }
+.sus-bar-track { height: 8px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
+.sus-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--blue-dark), var(--blue-light)); transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0; }
+.sus-bar-fill.animated { width: var(--target-width); }
+
+/* ISSUE LIST */
+.issue-list { list-style: none; }
+.issue-item { display: flex; gap: 1rem; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--gray-100); background: white; margin-bottom: 0.75rem; transition: var(--transition); }
+.issue-item:hover { box-shadow: var(--shadow); border-color: rgba(26,115,232,0.2); }
+.issue-num { width: 32px; height: 32px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700; flex-shrink: 0; }
+.issue-body { flex: 1; }
+.issue-title { font-weight: 700; color: var(--navy); font-size: 0.92rem; margin-bottom: 0.25rem; }
+.issue-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+.issue-heuristic { display: inline-block; margin-top: 0.4rem; font-size: 0.72rem; font-weight: 700; color: var(--blue-dark); background: var(--blue-pale); padding: 2px 8px; border-radius: 4px; }
+
+.callout { background: linear-gradient(135deg, var(--navy), var(--navy-card)); border-left: 4px solid var(--blue-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 1.25rem 1.5rem; color: rgba(255,255,255,0.82); font-size: 0.9rem; margin: 1.5rem 0; font-style: italic; }
+.prose { color: var(--gray-800); line-height: 1.85; font-size: 0.95rem; }
+.prose p { margin-bottom: 1.1rem; }
+.prose strong { color: var(--navy); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+/* RECOMMENDATIONS */
+.rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.rec-card { background: white; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 1.5rem; border-top: 3px solid var(--blue); transition: var(--transition); }
+.rec-card:nth-child(even) { border-top-color: var(--green); }
+.rec-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.rec-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.rec-title { font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.rec-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.65; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--blue), var(--green), rgba(52,168,83,0.1)); }
+.timeline-item { position: relative; margin-bottom: 2rem; padding-left: 1.5rem; }
+.timeline-dot { position: absolute; left: -2.45rem; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--blue); background: white; }
+.timeline-dot.filled { background: var(--blue); }
+.timeline-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 0.4rem; }
+.label-immediate { color: var(--accent-red); }
+.label-short { color: var(--accent-gold); }
+.label-long { color: var(--green); }
+.timeline-card { background: white; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 1.25rem 1.5rem; transition: var(--transition); }
+.timeline-card:hover { box-shadow: var(--shadow); border-color: rgba(26,115,232,0.2); }
+.timeline-title { font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+.timeline-desc { font-size: 0.87rem; color: var(--gray-600); line-height: 1.65; }
+
+/* DESIGN CARDS */
+.design-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.design-card { background: white; border: 1px solid var(--gray-100); border-radius: var(--radius); overflow: hidden; transition: var(--transition); }
+.design-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.design-card-header { background: var(--navy); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.design-card-icon { width: 40px; height: 40px; background: rgba(26,115,232,0.15); border: 1px solid rgba(26,115,232,0.3); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.design-card-title { font-family: 'Sora', sans-serif; font-weight: 700; color: white; font-size: 0.92rem; }
+.design-card-body { padding: 1.25rem 1.5rem; }
+.design-card-body p { font-size: 0.87rem; color: var(--gray-600); margin-bottom: 0.75rem; line-height: 1.65; }
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem; }
+.ba-box { border-radius: var(--radius-sm); padding: 0.65rem 0.75rem; font-size: 0.78rem; }
+.ba-before { background: #FFEBEE; border: 1px solid #FFCDD2; color: #B71C1C; }
+.ba-after { background: var(--green-pale); border: 1px solid #A5D6A7; color: var(--green-dark); }
+.ba-label { font-weight: 700; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; opacity: 0.7; }
+
+/* SUMMARY TABLE */
+.summary-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.summary-table th { background: var(--navy); color: white; padding: 0.85rem 1rem; text-align: left; font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700; }
+.summary-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--gray-50); vertical-align: top; color: var(--gray-800); }
+.summary-table tr:hover td { background: var(--gray-50); }
+.priority-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.dot-high { background: var(--accent-red); }
+.dot-medium { background: var(--accent-gold); }
+.dot-low { background: var(--green); }
+
+/* DOC CARDS */
+.doc-card { background: white; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 1.5rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; transition: var(--transition); text-decoration: none; color: inherit; }
+.doc-card:hover { box-shadow: var(--shadow); border-color: rgba(26,115,232,0.2); }
+.doc-icon { width: 46px; height: 46px; background: var(--blue-pale); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.doc-title { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+.doc-meta { font-size: 0.78rem; color: var(--gray-400); margin-top: 2px; }
+
+/* PHOTO GRID */
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+.photo-placeholder { aspect-ratio: 4/3; background: var(--gray-50); border-radius: var(--radius-sm); border: 2px dashed var(--gray-200); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--gray-400); font-size: 0.78rem; gap: 0.5rem; }
+.photo-placeholder .ph-icon { font-size: 1.5rem; }
+
+/* PAGE HERO */
+.page-hero { background: var(--navy); padding: 7rem 2rem 3.5rem; position: relative; overflow: hidden; }
+.page-hero-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+.breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
+.breadcrumb a { color: var(--blue-light); text-decoration: none; }
+.page-hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 0.75rem; }
+.page-hero p { color: rgba(255,255,255,0.52); max-width: 540px; font-size: 1rem; }
+
+/* OPEN ENDED */
+.open-ended-list { list-style: none; }
+.open-ended-list li { background: var(--gray-50); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 0.75rem; font-weight: 600; color: var(--gray-800); border-left: 3px solid var(--blue); font-size: 0.9rem; }
+
+/* FOOTER */
+footer { background: var(--navy); color: rgba(255,255,255,0.42); text-align: center; padding: 2.5rem 2rem; font-size: 0.82rem; border-top: 1px solid rgba(26,115,232,0.15); position: relative; overflow: hidden; }
+footer::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 2px; background: linear-gradient(90deg, transparent, var(--blue), var(--green), transparent); }
+footer strong { color: var(--blue-light); }
+footer .green { color: var(--green-light); }
+
+/* DIVIDER */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gray-100), transparent); margin: 3rem 0; }
+
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.anim-fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.anim-fade-down { opacity: 0; transform: translateY(-20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.anim-fade-in { opacity: 0; transition: opacity 0.6s ease; }
+.anim-scale-in { opacity: 0; transform: scale(0.94); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.anim-slide-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.anim-slide-right { opacity: 0; transform: translateX(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.anim-flip-in { opacity: 0; transform: perspective(600px) rotateX(12deg); transition: opacity 0.5s ease, transform 0.5s ease; }
+.anim-fade-up.is-visible, .anim-fade-down.is-visible, .anim-fade-in.is-visible, .anim-scale-in.is-visible, .anim-slide-left.is-visible, .anim-slide-right.is-visible, .anim-flip-in.is-visible { opacity: 1; transform: none; }
+.ripple-container { position: relative; overflow: hidden; }
+.ripple-wave { position: absolute; border-radius: 50%; background: rgba(26,115,232,0.18); transform: scale(0); animation: ripple 0.6s ease-out; pointer-events: none; }
+@keyframes ripple { to { transform: scale(2.5); opacity: 0; } }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--navy-mid); padding: 1rem; border-bottom: 1px solid rgba(26,115,232,0.18); }
+  .hamburger { display: flex; }
+  .hero-container { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-card { display: none; }
+  .member-grid { grid-template-columns: 1fr; }
+  .consent-fields { grid-template-columns: 1fr; }
+  .score-display { flex-direction: column; gap: 1.5rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .before-after { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   MEDIQUICK — animations.css
+   Add <link rel="stylesheet" href="assets/css/animations.css">
+   (or ../assets/css/animations.css from /pages/) AFTER style.css
+   ============================================================ */
+
+/* ── 1. KEYFRAME LIBRARY ────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(10,155,138,0); }
+  50%       { box-shadow: 0 0 0 10px rgba(10,155,138,0.15); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(10,155,138,0.2); }
+  50%       { border-color: rgba(10,155,138,0.6); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dashDraw {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes navSlideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: var(--target-width, 100%); }
+}
+
+@keyframes tabIndicatorSlide {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes heroTextReveal {
+  from { opacity: 0; transform: translateY(20px) skewY(1deg); }
+  to   { opacity: 1; transform: translateY(0) skewY(0deg); }
+}
+
+@keyframes cardFlip {
+  0%   { transform: perspective(600px) rotateY(15deg) scale(0.96); opacity: 0; }
+  100% { transform: perspective(600px) rotateY(0deg) scale(1);    opacity: 1; }
+}
+
+@keyframes timelineDotPop {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+
+/* ── 2. SCROLL-TRIGGERED ENTRANCE CLASSES ───────────────────── */
+/* Applied by JS when element enters viewport */
+
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-down {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-fade-down.is-visible { opacity: 1; transform: translateY(0); }
+
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.anim-fade-in.is-visible { opacity: 1; }
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.anim-scale-in.is-visible { opacity: 1; transform: scale(1); }
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-slide-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-slide-right.is-visible { opacity: 1; transform: translateX(0); }
+
+.anim-flip-in {
+  opacity: 0;
+  transform: perspective(600px) rotateY(15deg) scale(0.96);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.anim-flip-in.is-visible { opacity: 1; transform: perspective(600px) rotateY(0deg) scale(1); }
+
+/* Stagger delay helpers — add alongside any anim- class */
+.delay-100 { transition-delay: 0.1s !important; }
+.delay-200 { transition-delay: 0.2s !important; }
+.delay-300 { transition-delay: 0.3s !important; }
+.delay-400 { transition-delay: 0.4s !important; }
+.delay-500 { transition-delay: 0.5s !important; }
+.delay-600 { transition-delay: 0.6s !important; }
+.delay-700 { transition-delay: 0.7s !important; }
+.delay-800 { transition-delay: 0.8s !important; }
+
+
+/* ── 3. NAVBAR ANIMATION ────────────────────────────────────── */
+
+.navbar {
+  animation: navSlideDown 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.nav-brand {
+  animation: fadeIn 0.6s 0.3s ease both;
+}
+
+.nav-links li {
+  animation: fadeDown 0.4s ease both;
+}
+.nav-links li:nth-child(1) { animation-delay: 0.35s; }
+.nav-links li:nth-child(2) { animation-delay: 0.42s; }
+.nav-links li:nth-child(3) { animation-delay: 0.49s; }
+.nav-links li:nth-child(4) { animation-delay: 0.56s; }
+
+/* nav link hover underline sweep */
+.nav-links a {
+  position: relative;
+  overflow: hidden;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 50%; right: 50%;
+  height: 2px;
+  background: var(--teal-light);
+  border-radius: 2px;
+  transition: left 0.25s ease, right 0.25s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  left: 10px;
+  right: 10px;
+}
+
+
+/* ── 4. HERO SECTION ────────────────────────────────────────── */
+
+.hero-badge {
+  animation: fadeIn 0.6s 0.4s ease both;
+}
+
+.hero h1 {
+  animation: heroTextReveal 0.8s 0.55s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.hero-desc {
+  animation: fadeUp 0.7s 0.75s ease both;
+}
+
+.hero-tags {
+  animation: fadeUp 0.7s 0.9s ease both;
+}
+
+.hero-card {
+  animation: slideInRight 0.8s 0.6s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* floating effect on hero card */
+.hero-card {
+  animation: slideInRight 0.8s 0.6s cubic-bezier(0.22,1,0.36,1) both,
+             floatY 5s 1.5s ease-in-out infinite;
+}
+
+/* member avatar pulse on hover */
+.member-avatar {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease;
+}
+.member-avatar:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px rgba(10,155,138,0.2);
+}
+
+/* hero background grid parallax hint */
+.hero-grid {
+  animation: fadeIn 1.2s 0.2s ease both;
+}
+
+/* blink dot already defined in keyframes, used in .hero-badge::before via style.css */
+
+
+/* ── 5. CARDS ───────────────────────────────────────────────── */
+
+/* Generic card hover lift & glow */
+.card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(10,155,138,0.16);
+}
+
+/* Heuristic cards — flip entrance */
+.heuristic-card {
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+.heuristic-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(10,155,138,0.18);
+  border-color: var(--teal);
+}
+
+/* heuristic number morphs on hover */
+.heuristic-card:hover .heuristic-num {
+  color: rgba(10,155,138,0.22);
+  transition: color 0.3s ease;
+}
+
+/* rec cards */
+.rec-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease;
+}
+.rec-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(10,155,138,0.14);
+}
+
+/* design cards */
+.design-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease;
+}
+.design-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 14px 38px rgba(10,155,138,0.16);
+}
+
+/* issue items */
+.issue-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.issue-item:hover {
+  transform: translateX(5px);
+  border-color: rgba(10,155,138,0.3);
+  box-shadow: 0 4px 20px rgba(10,155,138,0.1);
+}
+
+/* doc cards */
+.doc-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.doc-card:hover {
+  transform: translateX(4px);
+  border-color: rgba(10,155,138,0.3);
+  box-shadow: var(--shadow);
+}
+
+/* timeline cards */
+.timeline-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.timeline-card:hover {
+  transform: translateX(6px);
+  border-color: rgba(10,155,138,0.25);
+  box-shadow: 0 6px 24px rgba(10,155,138,0.1);
+}
+
+
+/* ── 6. BUTTONS & INTERACTIVE ELEMENTS ──────────────────────── */
+
+/* ripple effect base — JS adds .ripple-container class */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* proto link arrow bounce */
+.proto-link svg,
+.proto-link::after {
+  transition: transform 0.25s ease;
+}
+.proto-link:hover {
+  letter-spacing: 0.5px;
+  transition: letter-spacing 0.2s ease, opacity 0.2s ease;
+}
+
+/* nav brand logo spin-on-hover */
+.nav-logo {
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nav-logo:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* tab buttons */
+.tab-btn {
+  transition: color 0.25s ease, background 0.25s ease;
+  position: relative;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 100%;
+  height: 2px;
+  background: var(--teal);
+  transition: right 0.3s cubic-bezier(0.22,1,0.36,1);
+  border-radius: 2px;
+}
+.tab-btn.active::after { right: 0; }
+.tab-btn:hover { color: var(--teal); }
+
+
+/* ── 7. SUS BAR CHART ANIMATION ─────────────────────────────── */
+
+.sus-bar-fill {
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* JS triggers .animated class when bar enters viewport */
+.sus-bar-fill.animated {
+  width: var(--target-width, 0%);
+}
+
+/* bar track shimmer while loading */
+.sus-bar-track {
+  position: relative;
+  overflow: hidden;
+}
+.sus-bar-track::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 400px 100%;
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+/* hide shimmer once bar is animated */
+.sus-bar-fill.animated ~ .sus-bar-track::after { opacity: 0; }
+
+
+/* ── 8. SCORE CIRCLE ANIMATION ──────────────────────────────── */
+
+.score-circle {
+  animation: scaleIn 0.7s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.score-num {
+  animation: countUp 0.5s 0.6s ease both;
+}
+
+/* rotating border glow on score circle */
+.score-circle::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(var(--teal-light) 0% 77.5%, transparent 77.5%);
+  animation: spinSlow 8s linear infinite;
+  opacity: 0.25;
+}
+
+
+/* ── 9. CONSENT BOX ─────────────────────────────────────────── */
+
+.consent-box {
+  animation: scaleIn 0.6s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* pulsing border on consent box */
+.consent-box {
+  animation: scaleIn 0.6s cubic-bezier(0.22,1,0.36,1) both,
+             borderPulse 4s 1s ease-in-out infinite;
+}
+
+.consent-section {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.consent-section.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* ── 10. TIMELINE DOTS ──────────────────────────────────────── */
+
+.timeline-dot {
+  transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              border-color 0.3s ease;
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--teal) !important;
+  transform: scale(1.4);
+  border-color: var(--teal-light);
+}
+
+/* stagger dots appearing */
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.timeline-item.is-visible { opacity: 1; transform: translateX(0); }
+
+
+/* ── 11. SEVERITY BADGES ────────────────────────────────────── */
+
+.severity-badge {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.severity-badge:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+/* ── 12. PROFILE STATS ──────────────────────────────────────── */
+
+.profile-stat {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+}
+.profile-stat:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--shadow);
+}
+
+.profile-stat-num {
+  display: inline-block;
+  animation: countUp 0.6s ease both;
+}
+
+
+/* ── 13. PHOTO PLACEHOLDERS ─────────────────────────────────── */
+
+.photo-placeholder {
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.photo-placeholder:hover {
+  background: var(--gray-200);
+  border-color: var(--teal);
+  transform: scale(1.03);
+}
+.photo-placeholder span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.photo-placeholder:hover span {
+  transform: scale(1.3) rotate(8deg);
+}
+
+
+/* ── 14. HERO BACKGROUND GRID PULSE ─────────────────────────── */
+
+.hero-bg {
+  animation: gradientShift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+
+/* ── 15. PAGE HERO (inner pages) ────────────────────────────── */
+
+.page-hero h1 {
+  animation: heroTextReveal 0.75s 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.page-hero p {
+  animation: fadeUp 0.6s 0.6s ease both;
+}
+.breadcrumb {
+  animation: fadeIn 0.5s 0.25s ease both;
+}
+
+
+/* ── 16. FOOTER ENTRANCE ────────────────────────────────────── */
+
+footer {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+  animation-play-state: paused;
+}
+footer.is-visible { animation-play-state: running; }
+
+
+/* ── 17. SUS TABLE ROWS ─────────────────────────────────────── */
+
+.sus-table tbody tr {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.sus-table tbody tr:hover {
+  background: var(--gray-100);
+  transform: scale(1.005);
+}
+.sus-table tbody tr td:first-child {
+  transition: color 0.2s ease;
+}
+.sus-table tbody tr:hover td:first-child {
+  color: var(--teal-dark);
+}
+
+/* radio circles pulse on row hover */
+.radio-circle {
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+.sus-table tbody tr:hover .radio-circle {
+  border-color: var(--teal);
+  transform: scale(1.15);
+}
+
+
+/* ── 18. SUMMARY TABLE ROWS ─────────────────────────────────── */
+
+.summary-table tbody tr {
+  transition: background 0.2s ease;
+}
+.summary-table tbody tr:hover td {
+  background: rgba(10,155,138,0.04);
+}
+.priority-dot {
+  transition: transform 0.2s ease;
+}
+.summary-table tbody tr:hover .priority-dot {
+  transform: scale(1.5);
+}
+
+
+/* ── 19. SECTION EYEBROW ANIMATION ──────────────────────────── */
+
+.section-eyebrow {
+  position: relative;
+  display: inline-block;
+}
+.section-eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 2px;
+  background: var(--teal);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.section-eyebrow.is-visible::after { width: 100%; }
+
+
+/* ── 20. BEFORE/AFTER BOX REVEAL ───────────────────────────── */
+
+.ba-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ba-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+
+/* ── 21. OPEN-ENDED LIST ITEMS ──────────────────────────────── */
+
+.open-ended-list li {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.open-ended-list li:hover {
+  transform: translateX(6px);
+  box-shadow: 0 4px 14px rgba(10,155,138,0.1);
+  border-left-color: var(--teal-dark);
+}
+
+
+/* ── 22. SCORE BREAKDOWN ITEMS ──────────────────────────────── */
+
+.score-item {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.score-item:hover { transform: translateY(-4px) scale(1.05); }
+
+
+/* ── 23. CALLOUT BOX ────────────────────────────────────────── */
+
+.callout {
+  border-left-width: 4px;
+  transition: border-color 0.4s ease, transform 0.3s ease;
+  animation: fadeUp 0.6s ease both;
+}
+.callout:hover {
+  border-color: var(--teal-light);
+  transform: translateX(4px);
+}
+
+
+/* ── REDUCED MOTION OVERRIDE ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -206,6 +1211,7 @@
     <li><a href="data-gathering.html">Data Gathering</a></li>
     <li><a href="results.html">Results & Discussion</a></li>
     <li><a href="recommendations.html" class="active">Recommendations</a></li>
+    <li><a href="reflections.html">Reflections</a></li>
   </ul>
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
@@ -515,6 +1521,175 @@
   </div>
 </section>
 
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-eyebrow">Respondent Feedback</div>
+    <h2 class="section-title">Suggestions for Improvement</h2>
+    <p class="section-desc">Direct quotes from respondents on how to enhance MediQuick's usability.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;margin-bottom:3rem;">
+      <div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I suggest to recommend this system to everyone like outside of the campus"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Ashley F. Palenciana</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Promote it to make it accessible to others"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Cyrus Johair C. Zape</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Offline viewing of the products"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Winnie Bo</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I suggest that the app needs to be use in offline made it use without internet connection"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Kent R. Debil</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Make it accessible if you’re offline"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Neil Patrick P. Tenorio</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Hope for free shipping coupon"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Jessa R. Estaye</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"For improvements I think the system need to be reliable and for easy to use specially to new users"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Jhon Aldwen A.Livogue</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Its already good"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Lawrence Jay C. Alano</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I Like the overall system, but if I were to suggest one thing, I think text resizing and screen reader would help a lot of patient users that may have visual impairments and other specials needs due to their health"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Miguel Sodelver D. Ras</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I would humbly suggest to involved Ice cream and other frozen sweets on the choices to make it more of a authentic pharmacy"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Josh Peter M. Cea</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Keep instructions and labels and easy to understand"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Jessica Mercado</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Make it accessible"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Maida Dador</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I suggest continue improving the system because personally I like it"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Chesca Flores</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--blue);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I suggest to continue providing a simple and user friendly interface"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--blue);">— Maritoni C. Vinces</div>
+        </div>
+
+    </div>
+    <div class="section-eyebrow">Positive Feedback</div>
+    <h2 class="section-title">What They Liked Most</h2>
+    <p class="section-desc">Aspects of the MediQuick prototype that respondents appreciated.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;">
+      <div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Uploading of the prescription was fast"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Cianyl Pancho</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Clean and well organized."</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Denise Ashley R. Totanes</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"This system can individual, and this system is great and easy to use."</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Ashley F. Palenciana</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Smooth transition"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Cyrus Johair C. Zape</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Easy to use"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Winnie Bo</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I like about the system is the login interface easy to fill up and login"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Shiela A. Jallores</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Smooth Transition"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Jhon Ray P. Saor</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I like the dashboardand the cleanliness of the app it is more convenient to use"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Kent R. Debil</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"The Flexibility of the app"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— John Jurie P. Clariño</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Smooth Transaction"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Jemuel G. Tabaco</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"The user experience is what I like the must."</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Neil Patrick P. Tenorio</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Easy to use"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Jessa R. Estaye</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"How interactive the system, how it is easy to use"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Jhon Aldwen A.Livogue</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I like the part when you can edit profile its easy to edit."</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— MJ G. Tesoro</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"It was fun to discover this system the part that I like about this system is that ordering a product is simple and clear"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Gabriel Belette</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Instead of walking to buy medicine, I can instead use this"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Lawrence Jay C. Alano</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I really love the feature where you can scan a prescription to check its validity"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Miguel Sodelver D. Ras</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Easy to use and convenient"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Joy Carla  B. Callo</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"The reminder are helpful and easy to see"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Lyka Robles</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"As far as I can tell, this kind of system will help us to manage our health conditions. It will be beneficiate to those people who or has medical concerns. I usually recommend such system like this"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Leandro O. Porteza</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Easy to order medicine"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Ian Maila</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"It was fast and easy to use"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Maida Dador</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"Its easy to use. I think when people know about this they will know that it was convenient"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Pedral Elsa</div>
+        </div>
+<div class="card fade-up" style="border-left:4px solid var(--green);padding:1.25rem 1.5rem;">
+          <p style="font-size:0.88rem;color:var(--gray-700);line-height:1.75;margin-bottom:0.75rem;">"I like the browsing products because its smooth and convenient"</p>
+          <div style="font-size:0.78rem;font-weight:700;color:var(--green);">— Lorelyn Favor</div>
+        </div>
+
+    </div>
+  </div>
+</section>
 <footer>
   <p>HCI2 Final Project · <strong>Partido State University</strong> · College of Engineering and Computational Sciences</p>
   <p style="margin-top:0.35rem;">Course Instructor: <strong>Michael B. Amata</strong> · Group Leader: <strong>Jonas P. Sabenorio</strong></p>
@@ -522,5 +1697,536 @@
 
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/animations.js"></script>
+<script>
+// Nav active state & hamburger
+const navLinks = document.querySelectorAll('.nav-links a');
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+navLinks.forEach(link => {
+  const href = link.getAttribute('href');
+  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    link.classList.add('active');
+  }
+});
+
+const hamburger = document.getElementById('hamburger');
+const navLinksEl = document.getElementById('navLinks');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navLinksEl.classList.toggle('open');
+  });
+}
+
+// Fade-up observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Tabs
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const target = document.getElementById(btn.dataset.tab);
+    if (target) target.classList.add('active');
+  });
+});
+</script>
+<script>
+/**
+ * MEDIQUICK — animations.js
+ * AFTER main.js
+ */
+
+(function () {
+  'use strict';
+
+  /* ── HELPERS ──────────────────────────────────────────────── */
+
+  /** Create an IntersectionObserver that adds a class once and disconnects */
+  function onceVisible(selector, className, options = {}) {
+    const els = document.querySelectorAll(selector);
+    if (!els.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(className);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, ...options });
+    els.forEach(el => obs.observe(el));
+  }
+
+  /** Stagger a list of elements with a delay between each */
+  function staggerVisible(selector, className, delayMs = 100, options = {}) {
+    const els = document.querySelectorAll(selector);
+    if (!els.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const siblings = [...entry.target.parentElement.querySelectorAll(selector)];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add(className), idx * delayMs);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, ...options });
+    els.forEach(el => obs.observe(el));
+  }
+
+  /* ── 1. SCROLL-TRIGGERED ENTRANCE ────────────────────────── */
+
+  // All elements with anim- classes are observed here
+  const animClasses = [
+    '.anim-fade-up',
+    '.anim-fade-down',
+    '.anim-fade-in',
+    '.anim-scale-in',
+    '.anim-slide-left',
+    '.anim-slide-right',
+    '.anim-flip-in',
+  ];
+
+  const entranceObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // honour any existing transition-delay already set in CSS/HTML
+        entry.target.classList.add('is-visible');
+        entranceObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  animClasses.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => entranceObs.observe(el));
+  });
+
+  // Also support the existing .fade-up class from style.css (backward-compat)
+  const legacyObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        legacyObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => legacyObs.observe(el));
+
+
+  /* ── 2. STAGGER GROUPS ────────────────────────────────────── */
+
+  // Cards in a grid stagger in sequence
+  staggerVisible('.heuristic-card',   'is-visible', 90);
+  staggerVisible('.rec-card',         'is-visible', 90);
+  staggerVisible('.design-card',      'is-visible', 100);
+  staggerVisible('.issue-item',       'is-visible', 80);
+  staggerVisible('.timeline-item',    'is-visible', 110);
+  staggerVisible('.profile-stat',     'is-visible', 80);
+  staggerVisible('.doc-card',         'is-visible', 75);
+  staggerVisible('.photo-placeholder','is-visible', 60);
+
+
+  /* ── 3. SECTION EYEBROWS ──────────────────────────────────── */
+
+  onceVisible('.section-eyebrow', 'is-visible');
+
+
+  /* ── 4. CONSENT SECTIONS ──────────────────────────────────── */
+
+  // Each .consent-section slides in with stagger
+  const consentObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sections = [...document.querySelectorAll('.consent-section')];
+        sections.forEach((sec, i) => {
+          setTimeout(() => sec.classList.add('is-visible'), i * 100);
+        });
+        consentObs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  const consentBox = document.querySelector('.consent-box');
+  if (consentBox) consentObs.observe(consentBox);
+
+
+  /* ── 5. SUS BAR CHART ─────────────────────────────────────── */
+
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Small delay so the bar animates AFTER it's seen
+        setTimeout(() => entry.target.classList.add('animated'), 150);
+        barObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.sus-bar-fill').forEach(bar => barObs.observe(bar));
+
+
+  /* ── 6. ANIMATED NUMBER COUNTER ───────────────────────────── */
+
+  function animateCounter(el, target, duration = 1200) {
+    const isDecimal = target % 1 !== 0;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = eased * target;
+      el.textContent = isDecimal ? value.toFixed(1) : Math.round(value);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const raw = el.getAttribute('data-count');
+        if (raw !== null) {
+          const target = parseFloat(raw);
+          animateCounter(el, target);
+        }
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  // Auto-detect numeric elements to count up
+  // Usage: add data-count="77.5" to any element with a number
+  document.querySelectorAll('[data-count]').forEach(el => {
+    el.setAttribute('data-original', el.textContent);
+    el.textContent = '0';
+    counterObs.observe(el);
+  });
+
+  // Also animate .score-num automatically
+  document.querySelectorAll('.score-num').forEach(el => {
+    const raw = parseFloat(el.textContent);
+    if (!isNaN(raw)) {
+      el.setAttribute('data-count', raw);
+      el.textContent = '0';
+      counterObs.observe(el);
+    }
+  });
+
+  // And .profile-stat-num
+  document.querySelectorAll('.profile-stat-num').forEach(el => {
+    const raw = parseFloat(el.textContent);
+    if (!isNaN(raw)) {
+      el.setAttribute('data-count', raw);
+      el.textContent = '0';
+      counterObs.observe(el);
+    }
+  });
+
+
+  /* ── 7. RIPPLE EFFECT ON BUTTONS / CARDS ──────────────────── */
+
+  function addRipple(e) {
+    const el = e.currentTarget;
+    el.classList.add('ripple-container');
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top  - size / 2;
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple-wave');
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+    el.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+  }
+
+  document.querySelectorAll('.card, .rec-card, .heuristic-card, .tab-btn').forEach(el => {
+    el.addEventListener('click', addRipple);
+  });
+
+
+  /* ── 8. NAVBAR SCROLL SHRINK ──────────────────────────────── */
+
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      // Shrink height slightly when scrolled
+      if (y > 60) {
+        navbar.style.height = '56px';
+        navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.25)';
+      } else {
+        navbar.style.height = '68px';
+        navbar.style.boxShadow = 'none';
+      }
+      // Hide on scroll down, show on scroll up
+      if (y > lastY + 5 && y > 200) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else if (y < lastY - 5) {
+        navbar.style.transform = 'translateY(0)';
+      }
+      lastY = y;
+    }, { passive: true });
+    // Smooth show/hide transition for navbar
+    navbar.style.transition = 'height 0.3s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease';
+  }
+
+
+  /* ── 9. ACTIVE SECTION HIGHLIGHTING IN NAV ────────────────── */
+
+  const sections = document.querySelectorAll('section[id]');
+  if (sections.length) {
+    const sectionObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.nav-links a').forEach(a => {
+            a.classList.toggle(
+              'active',
+              a.getAttribute('href') === `#${entry.target.id}`
+            );
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => sectionObs.observe(s));
+  }
+
+
+  /* ── 10. SMOOTH TAB PANEL TRANSITION ─────────────────────── */
+
+  const tabBtns   = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  // Extend existing tab logic with fade animation
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabPanels.forEach(p => {
+        p.style.opacity = '0';
+        p.style.transform = 'translateY(8px)';
+      });
+      const target = document.getElementById(btn.dataset.tab);
+      if (target) {
+        setTimeout(() => {
+          target.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+          target.style.opacity = '1';
+          target.style.transform = 'translateY(0)';
+
+          // Re-observe any anim- elements inside the newly shown tab
+          target.querySelectorAll(animClasses.join(',')).forEach(el => {
+            if (!el.classList.contains('is-visible')) {
+              entranceObs.observe(el);
+            }
+          });
+
+          // Re-trigger bars if any in this tab
+          target.querySelectorAll('.sus-bar-fill').forEach(bar => {
+            if (!bar.classList.contains('animated')) {
+              setTimeout(() => bar.classList.add('animated'), 200);
+            }
+          });
+
+        }, 50);
+      }
+    });
+  });
+
+  // Set initial opacity so the active panel is visible on load
+  document.querySelectorAll('.tab-panel.active').forEach(p => {
+    p.style.opacity = '1';
+    p.style.transform = 'translateY(0)';
+  });
+
+
+  /* ── 11. HOVER TILT ON HERO CARD ──────────────────────────── */
+
+  const heroCard = document.querySelector('.hero-card');
+  if (heroCard) {
+    heroCard.addEventListener('mousemove', (e) => {
+      const rect = heroCard.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;  // -0.5 to 0.5
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      heroCard.style.transform = `
+        translateY(calc(-10px + ${y * 6}px))
+        rotateY(${x * 8}deg)
+        rotateX(${-y * 6}deg)
+      `;
+    });
+    heroCard.addEventListener('mouseleave', () => {
+      heroCard.style.transition = 'transform 0.6s cubic-bezier(0.22,1,0.36,1)';
+      heroCard.style.transform = 'translateY(-10px) rotateY(0deg) rotateX(0deg)';
+      setTimeout(() => heroCard.style.transition = '', 600);
+    });
+    heroCard.style.transformStyle = 'preserve-3d';
+    heroCard.style.willChange = 'transform';
+  }
+
+
+  /* ── 12. SCROLL PROGRESS BAR ──────────────────────────────── */
+
+  const progressBar = document.createElement('div');
+  progressBar.id = 'scroll-progress';
+  progressBar.style.cssText = `
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--teal-dark), var(--teal-light));
+    z-index: 9999;
+    transition: width 0.1s linear;
+    pointer-events: none;
+  `;
+  document.body.prepend(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${pct}%`;
+  }, { passive: true });
+
+
+  /* ── 13. FOOTER VISIBILITY TRIGGER ───────────────────────── */
+
+  const footer = document.querySelector('footer');
+  if (footer) {
+    const footerObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.add('is-visible');
+          footerObs.unobserve(footer);
+        }
+      });
+    }, { threshold: 0.1 });
+    footerObs.observe(footer);
+  }
+
+
+  /* ── 14. TYPING ANIMATION FOR PAGE HERO TITLES ────────────── */
+
+  const pageHero = document.querySelector('.page-hero h1');
+  if (pageHero) {
+    // Already animated by CSS; add a blinking cursor briefly after
+    pageHero.style.borderRight = '3px solid var(--teal-light)';
+    pageHero.style.display = 'inline-block';
+    setTimeout(() => {
+      pageHero.style.transition = 'border-right-color 0.3s ease';
+      pageHero.style.borderRightColor = 'transparent';
+    }, 1800);
+  }
+
+
+  /* ── 15. MAGNETIC HOVER ON NAV LINKS ─────────────────────── */
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('mousemove', (e) => {
+      const rect = link.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width  / 2) * 0.25;
+      const y = (e.clientY - rect.top  - rect.height / 2) * 0.25;
+      link.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    link.addEventListener('mouseleave', () => {
+      link.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1)';
+      link.style.transform = 'translate(0, 0)';
+      setTimeout(() => link.style.transition = '', 400);
+    });
+  });
+
+
+  /* ── 16. HEURISTIC CARD NUMBER HOVER ANIMATION ────────────── */
+
+  document.querySelectorAll('.heuristic-card').forEach(card => {
+    const num = card.querySelector('.heuristic-num');
+    if (!num) return;
+    card.addEventListener('mouseenter', () => {
+      num.style.transition = 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1), color 0.3s ease';
+      num.style.transform = 'scale(1.15) rotate(-5deg)';
+    });
+    card.addEventListener('mouseleave', () => {
+      num.style.transform = 'scale(1) rotate(0deg)';
+    });
+  });
+
+
+  /* ── 17. SMOOTH ANCHOR SCROLL ─────────────────────────────── */
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80; // navbar height
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+
+  /* ── 18. HAMBURGER MENU ANIMATION ─────────────────────────── */
+
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      const spans = hamburger.querySelectorAll('span');
+      const isOpen = hamburger.classList.toggle('is-open');
+      if (isOpen) {
+        spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = '';
+      }
+      spans.forEach(s => s.style.transition = 'transform 0.3s ease, opacity 0.3s ease');
+    });
+  }
+
+
+  /* ── 19. DOC CARD ICON BOUNCE ─────────────────────────────── */
+
+  document.querySelectorAll('.doc-card').forEach(card => {
+    const icon = card.querySelector('.doc-icon');
+    if (!icon) return;
+    card.addEventListener('mouseenter', () => {
+      icon.style.transition = 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1)';
+      icon.style.transform = 'scale(1.2) rotate(8deg)';
+    });
+    card.addEventListener('mouseleave', () => {
+      icon.style.transform = 'scale(1) rotate(0deg)';
+    });
+  });
+
+
+  /* ── 20. PAGE LOAD COMPLETE ───────────────────────────────── */
+
+  window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    requestAnimationFrame(() => {
+      document.body.style.opacity = '1';
+    });
+  });
+
+  // Add class to body so CSS can target post-load state
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('js-ready');
+  });
+
+})();
+</script>
 </body>
 </html>
