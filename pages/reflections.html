@@ -1019,7 +1019,7 @@ footer.is-visible { animation-play-state: running; }
 
 <nav class="navbar">
   <a class="nav-brand" href="../index.html">
-    <div class="nav-logo">MQ</div>
+    <div class="nav-logo" style="background:none;padding:0;"><img src="../assets/images/mediquicklogo2.png" alt="MediQuick Logo" style="width:38px;height:38px;border-radius:10px;object-fit:cover;"></div>
     <span class="nav-title">Medi<span class="green">Quick</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -1061,69 +1061,91 @@ footer.is-visible { animation-play-state: running; }
         <h2 class="section-title">Individual Learnings</h2>
         <p class="section-desc">Each group member reflects on their experience conducting the HCI2 usability evaluation of the MediQuick prototype.</p>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="reflection-grid">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;" class="reflection-grid">
 
-          <div class="reflection-card fade-up">
-            <div class="reflection-text">
-              Leading the MediQuick project taught me that building a system is only half the job — understanding how real users interact with it is equally important. Through this HCI2 evaluation, I realized that features we assumed were intuitive often caused confusion. The SUS testing results were humbling but necessary. Going forward, I will always incorporate usability testing early in the development cycle rather than treating it as an afterthought.
-            </div>
-            <div class="reflection-author">
-              <div class="r-avatar" style="background:linear-gradient(135deg,#1A73E8,#1557B0)">JS</div>
+          <!-- Jonas -->
+          <div class="fade-up" style="background:linear-gradient(135deg,#0A1628,#112244);border-radius:20px;padding:2rem;position:relative;overflow:hidden;border:1px solid rgba(26,115,232,0.25);box-shadow:0 12px 40px rgba(26,115,232,0.15);">
+            <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(26,115,232,0.2),transparent 70%);border-radius:50%;"></div>
+            <div style="position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;background:radial-gradient(circle,rgba(77,163,255,0.1),transparent 70%);border-radius:50%;"></div>
+            <div style="font-size:2rem;margin-bottom:1rem;">💡</div>
+            <p style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.85;margin-bottom:1.5rem;font-style:italic;position:relative;z-index:1;">"Leading MediQuick taught me that building a system is only half the job — understanding how real users interact with it is equally important. Features we assumed were intuitive often caused confusion. The SUS results were humbling but necessary. Going forward, I will always incorporate usability testing early in the development cycle rather than treating it as an afterthought."</p>
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.25rem;position:relative;z-index:1;">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1A73E8,#4DA3FF);display:flex;align-items:center;justify-content:center;font-family:Sora,sans-serif;font-weight:800;font-size:1rem;color:white;flex-shrink:0;box-shadow:0 4px 16px rgba(26,115,232,0.4);">JS</div>
               <div>
-                <div class="r-name">Jonas P. Sabenorio</div>
-                <div class="r-role">Group Leader · Developer</div>
+                <div style="font-family:Sora,sans-serif;font-weight:700;color:white;font-size:0.92rem;">Jonas P. Sabenorio</div>
+                <div style="display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;">
+                  <span style="background:rgba(26,115,232,0.3);border:1px solid rgba(26,115,232,0.5);color:#81C1FF;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Group Leader</span>
+                  <span style="background:rgba(26,115,232,0.3);border:1px solid rgba(26,115,232,0.5);color:#81C1FF;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Developer</span>
+                  <span style="background:rgba(26,115,232,0.3);border:1px solid rgba(26,115,232,0.5);color:#81C1FF;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Designer</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="reflection-card fade-up">
-            <div class="reflection-text">
-              Working as a developer on this project alongside Jonas, I gained hands-on experience in translating design concepts into a working Figma prototype. The heuristic evaluation phase opened my eyes to design principles I had previously overlooked, particularly around consistency and user control. Learning how Nielsen's heuristics apply to real UI problems has made me a more conscious developer who thinks about the user at every design decision.
-            </div>
-            <div class="reflection-author">
-              <div class="r-avatar" style="background:linear-gradient(135deg,#0D8F80,#1BC9A8)">LV</div>
+          <!-- Laurence -->
+          <div class="fade-up" style="background:linear-gradient(135deg,#071a14,#0a2a20);border-radius:20px;padding:2rem;position:relative;overflow:hidden;border:1px solid rgba(13,143,128,0.25);box-shadow:0 12px 40px rgba(13,143,128,0.15);">
+            <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(13,143,128,0.2),transparent 70%);border-radius:50%;"></div>
+            <div style="font-size:2rem;margin-bottom:1rem;">🛠️</div>
+            <p style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.85;margin-bottom:1.5rem;font-style:italic;position:relative;z-index:1;">"Working as a developer, I gained hands-on experience translating design concepts into a working Figma prototype. The heuristic evaluation phase opened my eyes to design principles I had previously overlooked — particularly around consistency and user control. Learning how Nielsen's heuristics apply to real UI problems has made me a more conscious developer who thinks about the user at every design decision."</p>
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.25rem;position:relative;z-index:1;">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0D8F80,#1BC9A8);display:flex;align-items:center;justify-content:center;font-family:Sora,sans-serif;font-weight:800;font-size:1rem;color:white;flex-shrink:0;box-shadow:0 4px 16px rgba(13,143,128,0.4);">LV</div>
               <div>
-                <div class="r-name">Laurence C. Villanueva</div>
-                <div class="r-role">Developer</div>
+                <div style="font-family:Sora,sans-serif;font-weight:700;color:white;font-size:0.92rem;">Laurence C. Villanueva</div>
+                <div style="display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;">
+                  <span style="background:rgba(13,143,128,0.3);border:1px solid rgba(13,143,128,0.5);color:#1BC9A8;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Developer</span>
+                  <span style="background:rgba(13,143,128,0.3);border:1px solid rgba(13,143,128,0.5);color:#1BC9A8;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Designer</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="reflection-card fade-up">
-            <div class="reflection-text">
-              Serving as the designer gave me a front-row view of how aesthetics and usability intersect — and sometimes conflict. Evaluating our own prototype critically required objectivity and genuine commitment to improving the user experience. The process deepened my understanding that good design is not about aesthetics alone but about empathy for the user's needs and mental models. This project will influence how I approach every future design challenge.
-            </div>
-            <div class="reflection-author">
-              <div class="r-avatar" style="background:linear-gradient(135deg,#7B4FA8,#B57FE0)">PS</div>
+          <!-- Pia -->
+          <div class="fade-up" style="background:linear-gradient(135deg,#150a28,#221040);border-radius:20px;padding:2rem;position:relative;overflow:hidden;border:1px solid rgba(123,79,168,0.25);box-shadow:0 12px 40px rgba(123,79,168,0.15);">
+            <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(123,79,168,0.2),transparent 70%);border-radius:50%;"></div>
+            <div style="font-size:2rem;margin-bottom:1rem;">⚙️</div>
+            <p style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.85;margin-bottom:1.5rem;font-style:italic;position:relative;z-index:1;">"Being part of the development team gave me a practical understanding of how design decisions affect the actual implementation of a system. Evaluating our own prototype required objectivity and genuine commitment to improving the user experience. This project deepened my appreciation for the connection between clean code, thoughtful design, and the real impact it has on everyday users."</p>
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.25rem;position:relative;z-index:1;">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#7B4FA8,#B57FE0);display:flex;align-items:center;justify-content:center;font-family:Sora,sans-serif;font-weight:800;font-size:1rem;color:white;flex-shrink:0;box-shadow:0 4px 16px rgba(123,79,168,0.4);">PS</div>
               <div>
-                <div class="r-name">Pia A. San Esteban</div>
-                <div class="r-role">Designer</div>
+                <div style="font-family:Sora,sans-serif;font-weight:700;color:white;font-size:0.92rem;">Pia A. San Esteban</div>
+                <div style="display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;">
+                  <span style="background:rgba(123,79,168,0.3);border:1px solid rgba(123,79,168,0.5);color:#B57FE0;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Developer</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="reflection-card fade-up">
-            <div class="reflection-text">
-              The usability testing sessions gave me direct exposure to how diverse users interact with digital systems differently. What surprised me most was how even small issues — like a missing back button or unclear category labels — could significantly disrupt a user's experience. Conducting the SUS evaluation with 40 respondents taught me the value of systematic, structured data collection, and I now appreciate why usability testing should be a standard step in any software development lifecycle.
-            </div>
-            <div class="reflection-author">
-              <div class="r-avatar" style="background:linear-gradient(135deg,#C47020,#F4A836)">PI</div>
+          <!-- Pauline -->
+          <div class="fade-up" style="background:linear-gradient(135deg,#1a1000,#2a1a00);border-radius:20px;padding:2rem;position:relative;overflow:hidden;border:1px solid rgba(196,112,32,0.25);box-shadow:0 12px 40px rgba(196,112,32,0.15);">
+            <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(196,112,32,0.2),transparent 70%);border-radius:50%;"></div>
+            <div style="font-size:2rem;margin-bottom:1rem;">📊</div>
+            <p style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.85;margin-bottom:1.5rem;font-style:italic;position:relative;z-index:1;">"The usability testing sessions gave me direct exposure to how diverse users interact with digital systems differently. What surprised me most was how even small issues — like a missing back button or unclear category labels — could significantly disrupt a user's experience. Conducting the SUS evaluation with 40 respondents taught me the value of systematic, structured data collection."</p>
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.25rem;position:relative;z-index:1;">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#C47020,#F4A836);display:flex;align-items:center;justify-content:center;font-family:Sora,sans-serif;font-weight:800;font-size:1rem;color:white;flex-shrink:0;box-shadow:0 4px 16px rgba(196,112,32,0.4);">PI</div>
               <div>
-                <div class="r-name">Pauline Cris V. Illagan</div>
-                <div class="r-role">Evaluator</div>
+                <div style="font-family:Sora,sans-serif;font-weight:700;color:white;font-size:0.92rem;">Pauline Cris V. Illagan</div>
+                <div style="display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;">
+                  <span style="background:rgba(196,112,32,0.3);border:1px solid rgba(196,112,32,0.5);color:#F4A836;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Evaluator</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="reflection-card fade-up" style="grid-column:1 / -1;">
-            <div class="reflection-text">
-              This project reinforced for me that HCI is not just an academic subject — it is a practical discipline that shapes whether users succeed or fail when using a system. As an evaluator, I found the heuristic evaluation process particularly eye-opening: each of Nielsen's heuristics is a lens through which you can identify entirely different types of usability problems. The MediQuick evaluation has equipped me with frameworks I will carry into my professional career as a future technology practitioner.
-            </div>
-            <div class="reflection-author">
-              <div class="r-avatar" style="background:linear-gradient(135deg,#A03030,#E06060)">LP</div>
+          <!-- Leslie - full width -->
+          <div class="fade-up" style="grid-column:1 / -1;background:linear-gradient(135deg,#1a0808,#2a0f0f);border-radius:20px;padding:2rem 2.5rem;position:relative;overflow:hidden;border:1px solid rgba(160,48,48,0.25);box-shadow:0 12px 40px rgba(160,48,48,0.15);">
+            <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(160,48,48,0.18),transparent 70%);border-radius:50%;"></div>
+            <div style="position:absolute;bottom:-30px;left:30%;width:160px;height:160px;background:radial-gradient(circle,rgba(224,96,96,0.1),transparent 70%);border-radius:50%;"></div>
+            <div style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;z-index:1;">
               <div>
-                <div class="r-name">Leslie F. Panagan</div>
-                <div class="r-role">Evaluator</div>
+                <div style="font-size:2rem;margin-bottom:1rem;">🔍</div>
+                <p style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.85;font-style:italic;">"This project reinforced for me that HCI is not just an academic subject — it is a practical discipline that shapes whether users succeed or fail when using a system. As an evaluator, I found the heuristic evaluation process particularly eye-opening: each of Nielsen's heuristics is a lens through which you can identify entirely different types of usability problems. The MediQuick evaluation has equipped me with frameworks I will carry into my professional career."</p>
+              </div>
+              <div style="text-align:center;flex-shrink:0;">
+                <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#A03030,#E06060);display:flex;align-items:center;justify-content:center;font-family:Sora,sans-serif;font-weight:800;font-size:1.2rem;color:white;margin:0 auto 0.75rem;box-shadow:0 4px 20px rgba(160,48,48,0.5);">LP</div>
+                <div style="font-family:Sora,sans-serif;font-weight:700;color:white;font-size:0.88rem;white-space:nowrap;">Leslie F. Panagan</div>
+                <div style="display:flex;gap:5px;margin-top:6px;justify-content:center;flex-wrap:wrap;">
+                  <span style="background:rgba(160,48,48,0.3);border:1px solid rgba(160,48,48,0.5);color:#E06060;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Evaluator</span>
+                </div>
               </div>
             </div>
           </div>

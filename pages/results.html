@@ -1145,7 +1145,7 @@ footer.is-visible { animation-play-state: running; }
 
 <nav class="navbar">
   <a class="nav-brand" href="../index.html">
-    <div class="nav-logo">MQ</div>
+    <div class="nav-logo" style="background:none;padding:0;"><img src="../assets/images/mediquicklogo2.png" alt="MediQuick Logo" style="width:38px;height:38px;border-radius:10px;object-fit:cover;"></div>
     <span class="nav-title">Medi<span class="green">Quick</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -1180,7 +1180,7 @@ footer.is-visible { animation-play-state: running; }
     <div class="score-display fade-up">
       <div class="score-circle">
         <div class="score-value">
-          <div class="score-num" data-count="68.06">68.06</div>
+          <div class="score-num">68.06</div>
           <div class="score-unit">/ 100</div>
         </div>
       </div>
@@ -1263,90 +1263,96 @@ footer.is-visible { animation-play-state: running; }
 
     <div class="heuristic-grid">
 
+      <!-- Heuristic 1 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">1</div>
-        <div class="severity-badge severity-low">No Issue</div>
+        <div class="severity-badge severity-medium">Minor Issue</div>
         <div class="heuristic-title">Visibility of System Status</div>
-        <div class="heuristic-desc">The system generally keeps users informed about what's going on through loading indicators and status messages during key interactions.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Add real-time order tracking status updates to improve feedback during the delivery process.</div>
+        <div class="heuristic-desc">During our evaluation, we observed that MediQuick does not display any loading indicator or progress feedback when users add items to the cart or proceed to checkout. Users are left uncertain whether their action was registered, especially on slower connections.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Add visible loading spinners, progress bars, and success confirmation messages (e.g., "Item added to cart ✓") after every key user action to keep users informed of the system's current state.</div>
       </div>
 
+      <!-- Heuristic 2 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">2</div>
         <div class="severity-badge severity-medium">Minor Issue</div>
         <div class="heuristic-title">Match Between System & Real World</div>
-        <div class="heuristic-desc">Some medical terminology and category labels may be unfamiliar to non-expert users, creating a slight disconnect from everyday language.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Use plain, patient-friendly language for medicine categories and descriptions.</div>
+        <div class="heuristic-desc">Several medicine category labels and product descriptions use technical pharmaceutical terms (e.g., "Analgesics," "Antipyretics") that may be unfamiliar to ordinary users who are more accustomed to common names like "Pain Relievers" or "Fever Medicine."</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Replace or accompany technical labels with plain, everyday language that non-expert users can immediately understand. Use familiar icons alongside category names to reinforce meaning.</div>
       </div>
 
+      <!-- Heuristic 3 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">3</div>
-        <div class="severity-badge severity-low">No Issue</div>
+        <div class="severity-badge severity-high">Major Issue</div>
         <div class="heuristic-title">User Control & Freedom</div>
-        <div class="heuristic-desc">Users can easily navigate back, modify their cart, and cancel actions throughout the checkout flow.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Consider adding an undo option when items are removed from the cart.</div>
+        <div class="heuristic-desc">We found that once a user proceeds past the cart screen to the checkout page, there is no clearly visible "Back" or "Edit Order" button. Users who accidentally tapped "Checkout" had no easy way to return and modify their order without using the device's system back button.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Add a clearly labeled "Back to Cart" button on the checkout screen and implement an "Edit" option so users can freely modify their order at any point before final submission.</div>
       </div>
 
+      <!-- Heuristic 4 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">4</div>
         <div class="severity-badge severity-medium">Minor Issue</div>
         <div class="heuristic-title">Consistency & Standards</div>
-        <div class="heuristic-desc">Some button styles and icon usage are inconsistent across different screens, which may cause confusion for first-time users.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Establish a unified design system with consistent button sizes, colors, and icon styles across all screens.</div>
+        <div class="heuristic-desc">During the evaluation, we noticed that primary action buttons are styled differently across screens — some use filled blue buttons while others use outlined buttons for the same type of action (e.g., "Add to Cart"). Icon styles also varied between screens, causing visual inconsistency.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Establish and strictly follow a unified design system. All primary buttons should share the same color, size, and style. Icons should come from a single consistent icon set throughout the entire application.</div>
       </div>
 
+      <!-- Heuristic 5 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">5</div>
         <div class="severity-badge severity-high">Major Issue</div>
         <div class="heuristic-title">Error Prevention</div>
-        <div class="heuristic-desc">The checkout form lacks sufficient validation and confirmation prompts, allowing users to submit incomplete or incorrect orders without adequate warning.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Implement inline form validation, required field indicators, and an order review/confirmation screen before final submission.</div>
+        <div class="heuristic-desc">The checkout form in MediQuick does not validate input fields in real time. During testing, evaluators were able to proceed to order confirmation with an empty delivery address and an invalid contact number, with no warning displayed until after submission failed.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Implement real-time inline field validation with clear required field indicators (*). Add a mandatory order review screen before final submission so users can verify all details before confirming their order.</div>
       </div>
 
+      <!-- Heuristic 6 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">6</div>
         <div class="severity-badge severity-medium">Minor Issue</div>
         <div class="heuristic-title">Recognition Rather Than Recall</div>
-        <div class="heuristic-desc">Users must remember previously viewed medicines when comparing options, as there is no persistent comparison or recently-viewed feature.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Add a "Recently Viewed" section and a product comparison feature to reduce memory load.</div>
+        <div class="heuristic-desc">When browsing multiple medicines, users must rely on memory to compare products since MediQuick has no "Recently Viewed" history or product comparison feature. Users who navigated away from a product page had to search for it again from scratch.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Introduce a "Recently Viewed" section on the home screen and product listing pages. A side-by-side comparison feature for up to 3 medicines would further reduce memory load for users making purchasing decisions.</div>
       </div>
 
+      <!-- Heuristic 7 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">7</div>
         <div class="severity-badge severity-low">No Issue</div>
         <div class="heuristic-title">Flexibility & Efficiency of Use</div>
-        <div class="heuristic-desc">The search and filter functionality allows experienced users to quickly find specific medicines, supporting efficient task completion.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Add keyboard shortcuts and quick-reorder options for returning customers.</div>
+        <div class="heuristic-desc">MediQuick's search bar with filter and category browsing options works well for both novice and experienced users. The home screen prominently displays popular medicines and categories, allowing frequent users to quickly reach their desired products without multiple steps.</div>
+        <div class="heuristic-rec"><strong>Observation</strong>To further support returning users, consider adding a "Buy Again" shortcut section and saving frequently ordered items for one-tap reordering in future iterations of the prototype.</div>
       </div>
 
+      <!-- Heuristic 8 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">8</div>
         <div class="severity-badge severity-medium">Minor Issue</div>
         <div class="heuristic-title">Aesthetic & Minimalist Design</div>
-        <div class="heuristic-desc">Some product pages contain excessive text and competing visual elements that distract from the primary action of adding items to the cart.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Simplify product detail pages by prioritizing essential information and reducing visual noise.</div>
+        <div class="heuristic-desc">The product detail screens were found to be visually cluttered. Multiple promotional banners, badges, and text blocks compete for attention, making it difficult for users to focus on the core task of reading the product information and adding it to the cart.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Reduce visual clutter on product pages by limiting promotional elements to one banner per screen. Prioritize product name, image, price, and the "Add to Cart" button as the dominant visual elements.</div>
       </div>
 
+      <!-- Heuristic 9 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">9</div>
         <div class="severity-badge severity-high">Major Issue</div>
         <div class="heuristic-title">Help Users Recognize, Diagnose & Recover from Errors</div>
-        <div class="heuristic-desc">Error messages are generic and do not provide actionable guidance, leaving users unsure how to resolve the problem.</div>
-        <div class="heuristic-rec"><strong>Recommendation</strong>Rewrite all error messages to be specific, human-readable, and include clear next steps for resolution.</div>
+        <div class="heuristic-desc">When an error occurred (e.g., searching for an unavailable medicine or entering an invalid address), the system only displayed a generic message: "An error occurred. Please try again." This gave users no indication of what went wrong or how to fix it, causing confusion and frustration.</div>
+        <div class="heuristic-rec"><strong>Recommendation</strong>Replace all generic error messages with specific, plain-language descriptions of the problem and clear recovery steps. For example: "We couldn't find that medicine. Try checking the spelling or browse by category."</div>
       </div>
 
+      <!-- Heuristic 10 -->
       <div class="heuristic-card fade-up">
         <div class="heuristic-num">10</div>
         <div class="severity-badge severity-low">No Issue</div>
         <div class="heuristic-title">Help & Documentation</div>
-        <div class="heuristic-desc">Basic help text is available on key screens. The prototype includes a visible FAQ section accessible from the main navigation.</div>
-        <div class="heuristic-rec"><strong>Observation</strong>Consider adding contextual tooltips and an in-app chat support option for urgent queries.</div>
+        <div class="heuristic-desc">MediQuick includes a visible FAQ section accessible from the main navigation menu, and brief help text is present on key screens such as the prescription upload page. The onboarding flow also provides short instructional hints for first-time users navigating the app.</div>
+        <div class="heuristic-rec"><strong>Observation</strong>While the current help documentation is adequate for basic tasks, consider adding contextual tooltips on complex features (e.g., prescription requirements) and a live chat support option for users with urgent medication queries.</div>
       </div>
 
-    </div>
-
-    <div style="margin-top:2rem;background:var(--gray-100);border-radius:var(--radius);padding:1.25rem 1.5rem;font-size:0.85rem;color:var(--gray-600);">
-      <strong style="color:var(--navy);">📝 Note to Group:</strong> The heuristic findings above are sample/placeholder content. Replace each card with the actual findings from your group members' individual Heuristic Evaluation Workbooks. Update severity badges (High/Medium/Low) to match your actual ratings.
     </div>
   </div>
 </section>
@@ -1973,14 +1979,15 @@ tabBtns.forEach(btn => {
 
   function animateCounter(el, target, duration = 1200) {
     const isDecimal = target % 1 !== 0;
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0') || 
+                     (String(target).split('.')[1] || '').length;
     const start = performance.now();
     function update(now) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      // easeOutCubic
       const eased = 1 - Math.pow(1 - progress, 3);
       const value = eased * target;
-      el.textContent = isDecimal ? value.toFixed(1) : Math.round(value);
+      el.textContent = isDecimal ? value.toFixed(decimals) : Math.round(value);
       if (progress < 1) requestAnimationFrame(update);
     }
     requestAnimationFrame(update);
@@ -2012,7 +2019,9 @@ tabBtns.forEach(btn => {
   document.querySelectorAll('.score-num').forEach(el => {
     const raw = parseFloat(el.textContent);
     if (!isNaN(raw)) {
+      const decimals = (el.textContent.trim().split('.')[1] || '').length;
       el.setAttribute('data-count', raw);
+      el.setAttribute('data-decimals', decimals);
       el.textContent = '0';
       counterObs.observe(el);
     }
